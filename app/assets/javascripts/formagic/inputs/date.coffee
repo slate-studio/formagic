@@ -21,8 +21,15 @@ class @InputDate extends InputString
 
   _update_date_label: ->
     date = @$input.val()
-    date_formatted = moment(date).format("dddd, MMMM Do, YYYY")
+
+    if date
+      date_formatted = moment(date).format("dddd, MMMM Do, YYYY")
+
+    else
+      date_formatted = ''
+
     @$dateLabel.html(date_formatted)
+
 
 
   _add_input: ->

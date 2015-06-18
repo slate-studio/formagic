@@ -37,7 +37,3 @@ class @InputText extends InputString
 
 
 chr.formInputs['text'] = InputText
-
-
-
-

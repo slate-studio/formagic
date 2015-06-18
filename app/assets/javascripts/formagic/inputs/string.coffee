@@ -50,10 +50,11 @@ class @InputString
 
 
   _add_label: ->
-    @$label        =$ "<span class='label'>#{ @config.label }</span>"
-    @$errorMessage =$ "<span class='error-message'></span>"
-    @$label.append(@$errorMessage)
-    @$el.append(@$label)
+    if @config.label != false
+      @$label        =$ "<span class='label'>#{ @config.label }</span>"
+      @$errorMessage =$ "<span class='error-message'></span>"
+      @$label.append(@$errorMessage)
+      @$el.append(@$label)
 
 
   _add_input: ->
