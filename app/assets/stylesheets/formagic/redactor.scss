@@ -1,7 +1,9 @@
+// redactor
+
 @import "redactor";
 
-
 // input
+
 .input-inverter,
 .input-redactor {
   .redactor-box     { margin-bottom: 0; }
@@ -10,19 +12,24 @@
 }
 
 // toolbar
+
 .redactor-toolbar li a:hover { background-color: $positiveColor; }
 .redactor-dropdown a:hover { background-color: $positiveColor; }
 
 // placeholder
+
 .redactor-placeholder:after { color: $lightColor!important; left: .5em; top: 18px; }
 
 // scrollbars
+
 .redactor-editor, textarea.redactor { @include custom-scrollbar; }
 
 // line-height issue fix
+
 .redactor-editor { line-height: inherit !important; }
 
 // modal
+
 #redactor-modal-close { line-height: 30px; text-align: center; }
 #redactor-modal footer button {
   &.redactor-modal-close-btn { background-color: $lightColor;
@@ -32,4 +39,3 @@
   &.redactor-modal-delete-btn { background-color: $assertiveColor;
     &:hover { background-color: $assertiveColor; opacity: .75; color: $white; } }
 }
-

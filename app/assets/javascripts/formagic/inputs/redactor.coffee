@@ -13,7 +13,7 @@
 # Dependencies:
 #= require redactor
 #= require vendor/redactor.fixedtoolbar
-#= require ./input-redactor_character
+#= require ./redactor_character
 # -----------------------------------------------------------------------------
 
 class @InputRedactor extends InputString

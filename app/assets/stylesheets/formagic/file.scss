@@ -1,0 +1,29 @@
+// file
+
+.form {
+
+  // calculated based on image thumbnail size
+
+  .input-file { min-height: 102px;
+
+    a { color: $positiveColor; @include truncate; }
+    a:hover { text-decoration: underline; }
+
+    input[type=file] { margin-top: .5em; margin-left: 1.75em; }
+    input[type=checkbox] { display: inline; width: auto; margin-right: .5em; margin-left: 1em; }
+    label { display: inline; font-size: .8em; }
+
+    &.empty {
+      img, a, label, input[type=checkbox] { @include hide; }
+      input[type=file] { margin-top: .2em; }
+    }
+  }
+
+  .input-file-clear {
+    display: inline-block; width: 1.5em; height: 1.5em;  background-color: rgba(0,0,0,.05);
+    @include position(absolute); border-radius: 1em; margin-top: -22px;
+    &:before { content: '\00d7'; color: $stableColor; line-height: 1.35em; @include position(absolute, null 7px null null); }
+    &:hover  { background-color: $positiveColor; &:before { color: $white; } }
+  }
+
+}

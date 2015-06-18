@@ -15,8 +15,8 @@
 # All items should be unique for now.
 #
 # Dependencies:
-#= require ./input-list_reorder
-#= require ./input-list_typeahead
+#= require ./list_reorder
+#= require ./list_typeahead
 #
 # -----------------------------------------------------------------------------
 

@@ -1,0 +1,22 @@
+#= require ./formagic/form
+#= require ./formagic/group
+
+#= require ./formagic/inputs/hidden
+#= require ./formagic/inputs/string
+#= require ./formagic/inputs/text
+#= require ./formagic/inputs/checkbox
+#= require ./formagic/inputs/color
+#= require ./formagic/inputs/date
+#= require ./formagic/inputs/datetime
+#= require ./formagic/inputs/document
+#= require ./formagic/inputs/documents
+#= require ./formagic/inputs/file
+#= require ./formagic/inputs/html
+#= require ./formagic/inputs/image
+#= require ./formagic/inputs/list
+#= require ./formagic/inputs/markdown
+#= require ./formagic/inputs/password
+#= require ./formagic/inputs/redactor
+#= require ./formagic/inputs/select
+#= require ./formagic/inputs/select2
+#= require ./formagic/inputs/time

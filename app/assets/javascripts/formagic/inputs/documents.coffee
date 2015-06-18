@@ -20,7 +20,7 @@
 #   addNewForm(object)
 #
 # Dependencies:
-#= require ./input-form_reorder
+#= require ./documents_reorder
 #
 # -----------------------------------------------------------------------------
 
@@ -165,7 +165,8 @@ class @InputForm
 include(InputForm, inputFormReorder)
 
 
-chr.formInputs['form'] = InputForm
+chr.formInputs['form']      = InputForm
+chr.formInputs['documents'] = InputForm
 
 
 

@@ -14,8 +14,6 @@
 #
 # -----------------------------------------------------------------------------
 
-#@_expandableGroupStateCache = {}
-
 class @ExpandableGroup
   constructor: (@form, @group, name) ->
     @$expander =$ """<a href='#' class='group-edit hidden'>#{ name }</a>"""

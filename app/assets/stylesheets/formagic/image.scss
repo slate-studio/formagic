@@ -1,0 +1,19 @@
+// image ::: based on file
+
+.form {
+
+  .input-image { @extend .input-file; }
+
+  .input-image:not(.empty) {
+    padding-left: 6.5em;
+    position: relative;
+    img {
+      position: absolute;
+      border-radius: 4px;
+      left: 1em;
+      top: .8em;
+      width: 4.7em;
+    }
+  }
+
+}

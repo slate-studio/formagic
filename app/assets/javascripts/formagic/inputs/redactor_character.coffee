@@ -8,7 +8,7 @@
 
 # -----------------------------------------------------------------------------
 # REDACTOR CUSTOM VERSION
-#= require ./input-redactor_images
+#= require ./redactor_images
 # -----------------------------------------------------------------------------
 
 # change default fast speed from 200 to 10 as it's used by redactor modals

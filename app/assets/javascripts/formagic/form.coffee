@@ -122,7 +122,7 @@ class @Form
     inputName = if @config.namePrefix then "#{ @config.namePrefix }[#{ name }]" else "[#{ name }]"
 
     # add prefix for nested form inputs
-    if inputConfig.type == 'form'
+    if inputConfig.type == 'form' || inputConfig.type == 'documents'
       inputConfig.namePrefix = inputName.replace("[#{ name }]", "[#{ name }_attributes]")
 
     else
@@ -156,7 +156,7 @@ class @Form
     forms = [ @ ]
     addNestedForms = (form) ->
       for name, input of form.inputs
-        if input.config.type == 'form'
+        if input.config.type == 'form' || input.config.type == 'documents'
           forms = forms.concat(input.forms)
           addNestedForms(form) for form in input.forms
     addNestedForms(@)
