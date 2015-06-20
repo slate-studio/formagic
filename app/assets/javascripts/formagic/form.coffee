@@ -136,8 +136,12 @@ class @Form
   _add_nested_form_remove_button: ->
     if @config.removeButton
       # add hidden input to the form
-      fieldName          = '_destroy'
-      input              = @_render_input(fieldName, { type: 'hidden' }, false)
+      fieldName = '_destroy'
+      input     = @_render_input(fieldName, {
+        type:               'hidden',
+        ignoreOnSubmission: @config.ignoreOnSubmission
+      }, false)
+
       @inputs[fieldName] = input
       @$el.append input.$el
       # remove button
@@ -185,9 +189,12 @@ class @Form
           if input.isEmpty() then obj[input.removeName()] = 'true'
 
       # remove fields with ignoreOnSubmission
-      for name, input of form.inputs
+      for key, input of form.inputs
         if input.config.ignoreOnSubmission
-          delete obj[name]
+          delete obj[input.name]
+
+    # for k, v of obj
+    #   console.log k
 
     return obj
 

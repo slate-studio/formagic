@@ -28,10 +28,16 @@ class @InputForm
   constructor: (@name, @nestedObjects, @config, @object) ->
     @forms = []
 
-    @config.namePrefix   ||= name
-    @config.removeButton   = true
-    @config.formSchema._id = { type: 'hidden', name: 'id' }
+    @config.namePrefix         ||= name
+    @config.removeButton         = true
+    @config.ignoreOnSubmission ||= false
+
+    @config.formSchema._id = { type: 'hidden', name: 'id', ignoreOnSubmission: @config.ignoreOnSubmission }
     @reorderContainerClass = "nested-forms-#{@config.klassName}"
+
+    if @config.ignoreOnSubmission
+      for key, inputConfig of @config.formSchema
+        inputConfig.ignoreOnSubmission = true
 
     @_create_el()
 
