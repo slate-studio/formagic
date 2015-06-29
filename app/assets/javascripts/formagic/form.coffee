@@ -122,7 +122,7 @@ class @Form
     inputName = if @config.namePrefix then "#{ @config.namePrefix }[#{ name }]" else "[#{ name }]"
 
     # add prefix for nested form inputs
-    if inputConfig.type == 'form' || inputConfig.type == 'documents'
+    if inputConfig.type == 'form' || inputConfig.type == 'documents' || inputConfig.type == 'document'
       inputConfig.namePrefix = inputName.replace("[#{ name }]", "[#{ name }_attributes]")
 
     else

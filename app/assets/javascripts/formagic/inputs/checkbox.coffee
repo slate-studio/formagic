@@ -14,6 +14,7 @@ class @InputCheckbox extends InputString
     @_create_el()
     @_add_input()
     @_add_label()
+    @_add_disabled()
 
     return this
 
