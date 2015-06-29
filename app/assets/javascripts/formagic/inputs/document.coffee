@@ -98,9 +98,9 @@ class @InputDocument
 
 
   updateValue: (@nestedObject, @object) ->
-    @$form.remove()
-    @forms = []
-    @_add_forms()
+    for name, value of @nestedObject
+      if @nestedForm.inputs[name]
+        @nestedForm.inputs[name].updateValue(value, @object)
 
 
 chr.formInputs['document'] = InputDocument

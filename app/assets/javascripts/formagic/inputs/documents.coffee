@@ -163,6 +163,8 @@ class @InputForm
 
 
   updateValue: (@nestedObjects, @object) ->
+    # @TODO: this seems to be too radical, need to clearify a reason
+    #        why not update all inputs (probably issue with new documents)
     @$forms.remove()
     @forms = []
     @_add_forms()
