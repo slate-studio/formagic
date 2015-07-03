@@ -2,12 +2,7 @@
 
 .form {
 
-  // label
-
-  label { display: block; }
-  label a { color: $positiveColor; }
-
-  // general
+  // General
 
   .input-stacked {
     @include position(relative); padding: .5em 1em .9em;
@@ -18,20 +13,29 @@
     .label { display: block; line-height: 1.8; color: $stableColor; }
   }
 
-  // validation error
+  // Validation error
 
   .error-message { color: $assertiveColor; font-size: .8em; margin-left: .5em; }
 
-  // required
+  // Required
 
   .input-required .label:before { content: '*'; color: $assertiveColor; @include position(absolute, null null null .38em); }
 
-  // disabled
+  // Disabled
 
   .input-disabled { textarea, input { color: $stableColor; } }
 
-  // character counter
+  // Character counter
 
   .input-character-counter { font-size: .8em; margin-left: .5em; &.exceeds { color: $assertiveColor; } }
+
+  // Information box
+
+  .form-information {
+    margin     : 1em 1em 0;
+    padding    : 1em;
+    background : $neutralColor;
+    text-align : center;
+  }
 
 }

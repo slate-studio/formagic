@@ -1,0 +1,27 @@
+.form {
+
+  label {
+    display : block;
+
+    a { color : $positiveColor; }
+
+    .input-actions {
+      float           : right;
+      font-size       : .8em;
+
+      a {
+        color         : $stableColor;
+        margin        : 0 0 0 .75em;
+        border        : 1px solid $lightColor;
+        border-radius : 4px;
+        padding       : .25em .75em;
+      }
+
+      a:hover {
+        color         : $positiveColor;
+        border-color  : $positiveColor;
+      }
+    }
+  }
+
+}
