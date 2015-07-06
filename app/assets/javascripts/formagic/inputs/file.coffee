@@ -20,6 +20,7 @@ class @InputFile extends InputString
     @_add_input()
     @_update_state()
     @_add_required()
+    @_add_disabled()
 
     return this
 

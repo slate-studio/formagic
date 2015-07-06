@@ -26,4 +26,11 @@
     &:hover  { background-color: $positiveColor; &:before { color: $white; } }
   }
 
+  .input-file.input-disabled {
+    min-height : inherit;
+    input,
+    label {
+      display : none;
+    }
+  }
 }
