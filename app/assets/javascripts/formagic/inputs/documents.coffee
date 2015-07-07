@@ -169,6 +169,10 @@ class @InputForm
     @forms = []
     @_add_forms()
 
+    # Initialize input plugins after update
+    for nestedForm in @forms
+      nestedForm.initializePlugins()
+
 
 include(InputForm, inputFormReorder)
 
