@@ -43,20 +43,24 @@ $.fx.speeds.fast = 10
 
 
   _get_default_config: () ->
-    focus:            false
-    imageFloatMargin: '20px'
-    buttonSource:     true
-    pastePlainText:   true
-    scrollTarget:     chr.module.view.$content
-    plugins:          []
-    buttons:          [ 'html',
-                        'formatting',
-                        'bold',
-                        'italic',
-                        'deleted',
-                        'unorderedlist',
-                        'orderedlist',
-                        'link' ]
+    focus:             false
+    imageFloatMargin:  '20px'
+    buttonSource:      true
+    pastePlainText:    true
+    replaceDivs:       false
+    removeEmpty:       []
+    removeWithoutAttr: []
+    scrollTarget:      chr.module.view.$content
+    plugins:           [ 'table' ]
+    buttons:           [ 'html'
+                         'formatting'
+                         'bold'
+                         'italic'
+                         'deleted'
+                         'unorderedlist'
+                         'orderedlist'
+                         'table'
+                         'link' ]
 
     # to have caching working we need to trigger 'change' event for textarea
     # when content got changed in redactor, but skip this when updating value
