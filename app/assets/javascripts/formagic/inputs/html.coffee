@@ -50,6 +50,7 @@ class @InputHtml extends InputString
     @editor.$blockScrolling = Infinity
 
     @session = @editor.getSession()
+    @session.setUseWorker(false)
     @session.setValue(@$input.val())
     @session.setUseWrapMode(true)
     @session.setMode("ace/mode/html")
