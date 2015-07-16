@@ -23,7 +23,7 @@
 
   // Disabled
 
-  .input-disabled { textarea, input { color: $stableColor; } }
+  .input-disabled { textarea, input { color: lighten($black, 20%); } }
 
   // Character counter
 
