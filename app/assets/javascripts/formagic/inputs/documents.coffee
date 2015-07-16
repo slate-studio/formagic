@@ -29,7 +29,7 @@ class @InputForm
     @forms = []
 
     @config.namePrefix         ||= name
-    @config.removeButton         = true
+    @config.removeButton         = if @config.disableRemoveDocuments then false else true
     @config.ignoreOnSubmission ||= false
 
     @config.formSchema._id = { type: 'hidden', name: 'id', ignoreOnSubmission: @config.ignoreOnSubmission }
@@ -99,10 +99,13 @@ class @InputForm
 
 
   _add_new_button: ->
-    label = @config.newButtonLabel || "Add"
-    @$newButton =$ """<a href='#' class='nested-form-new'>#{ label }</a>"""
-    @$el.append @$newButton
-    @$newButton.on 'click', (e) => e.preventDefault() ; @addNewForm()
+    if ! @config.disableNewDocuments
+      label = @config.newButtonLabel || "Add"
+
+      @$newButton =$ """<a href='#' class='nested-form-new'>#{ label }</a>"""
+      @$el.append @$newButton
+
+      @$newButton.on 'click', (e) => e.preventDefault() ; @addNewForm()
 
 
   # PUBLIC ================================================
