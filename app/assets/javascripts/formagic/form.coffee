@@ -135,6 +135,7 @@ class @Form
 
   _add_nested_form_remove_button: ->
     if @config.removeButton
+
       # add hidden input to the form
       fieldName = '_destroy'
       input     = @_render_input(fieldName, {
@@ -143,10 +144,11 @@ class @Form
       }, false)
 
       @inputs[fieldName] = input
-      @$el.append input.$el
+      @$el.prepend input.$el
+
       # remove button
       @$removeButton =$ """<a href='#' class='nested-form-delete'>Delete</a>"""
-      @$el.append @$removeButton
+      @$el.prepend @$removeButton
       @$removeButton.on 'click', (e) =>
         e.preventDefault()
         if confirm('Are you sure?')
@@ -185,7 +187,10 @@ class @Form
       for name, input of form.inputs
         if input.config.type == 'file' or input.config.type == 'image'
           file = input.$input.get()[0].files[0]
-          obj["__FILE__#{ input.name }"] = file
+
+          if file
+            obj["__FILE__#{ input.name }"] = file
+
           if input.isEmpty() then obj[input.removeName()] = 'true'
 
       # remove fields with ignoreOnSubmission
@@ -216,9 +221,17 @@ class @Form
   showValidationErrors: (errors) ->
     @hideValidationErrors()
     for inputName, messages of errors
-      input        = @inputs[inputName]
-      firstMessage = messages[0]
-      input.showErrorMessage(firstMessage)
+      input = @inputs[inputName]
+
+      # Support nested documents validation errors
+      if ! input
+        for k, v of @inputs
+          if v.name == "[#{ inputName }]"
+            input = v
+
+      if input
+        firstMessage = messages[0]
+        input.showErrorMessage(firstMessage)
 
 
   hideValidationErrors: ->

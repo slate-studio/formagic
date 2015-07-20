@@ -5,9 +5,9 @@
     & > ul { margin: 0; padding: 0; }
     & > ul > li { list-style-type: none; margin-top: 1em; @include position(relative); border: 1px solid $neutralColor; }
     & > ul > li:first-child { margin-top: 0; }
-    & > ul > li > .icon-reorder { left: 0; top: 1em; }
+    & > ul > li > .icon-reorder { left: 0; top: 1em; z-index: 1; }
     & > ul li.reorderable { background-color: $white; }
-    & > ul li.reorderable > .input-stacked:first-child { padding-left: 2.4em; }
+    & > ul li.reorderable > .input-stacked:first-of-type { padding-left: 2.4em; }
   }
 
   .nested-form-new {
@@ -16,7 +16,7 @@
   }
 
   .nested-form-delete {
-    @include position(absolute, .35em .3em null null); border-radius: 1em;
+    @include position(absolute, .35em .3em null null); border-radius: 1em; z-index: 1;
     @include hide-text; width: 1.5em; height: 1.5em;  background-color: rgba(0,0,0,.05);
     &:before { content: '\00d7'; color: $stableColor; line-height: 1.35em; @include position(absolute, null 7px null null); }
     &:hover  { background-color: $positiveColor; &:before { color: $white; } }

@@ -32,7 +32,6 @@ class @InputForm
     @config.removeButton         = if @config.disableRemoveDocuments then false else true
     @config.ignoreOnSubmission ||= false
 
-    @config.formSchema._id = { type: 'hidden', name: 'id', ignoreOnSubmission: @config.ignoreOnSubmission }
     @reorderContainerClass = "nested-forms-#{@config.klassName}"
 
     if @config.ignoreOnSubmission
@@ -61,7 +60,21 @@ class @InputForm
     @$el.append(@$label)
 
 
+  _extend_schema_with: (name, config) ->
+    schemaConfig = {}
+    schemaConfig[name] = config
+    @config.formSchema = $.extend(schemaConfig, @config.formSchema)
+
+
   _add_forms: ->
+    # add id to schema
+    # @NOTE: here we use _id, cause mongosteen returns objects _id, but we should send id for nested documents
+    @_extend_schema_with('_id', { type: 'hidden', name: 'id', ignoreOnSubmission: @config.ignoreOnSubmission })
+
+    # add position to schema
+    if @config.sortBy
+      @_extend_schema_with(@config.sortBy, { type: 'hidden', ignoreOnSubmission: @config.ignoreOnSubmission })
+
     @$forms =$ "<ul>"
     @$label.after @$forms
 
@@ -78,7 +91,6 @@ class @InputForm
 
   _sort_nested_objects: ->
     if @config.sortBy
-      @config.formSchema[@config.sortBy] = { type: 'hidden' }
       if @nestedObjects
         # this is not required but make things a bit easier on the backend
         # as object don't have to be in a specific order.
@@ -150,11 +162,8 @@ class @InputForm
       prevForm = _last(@forms)
       position = if prevForm then prevForm.inputs[@config.sortBy].value + 1 else 1
 
-      # @TODO: having an issue here for scenario when no nested object are there for new object
-      # form.inputs doesn't include sortBy field
-      console.log @config
-      console.log @config.sortBy
-      console.log form.inputs
+      # Had a problem here for new documents, but now seems to be resolved by adding
+      # _position to schema in constructor (to be removed when stable).
 
       form.inputs[@config.sortBy].updateValue(position)
 
@@ -166,8 +175,10 @@ class @InputForm
 
 
   updateValue: (@nestedObjects, @object) ->
-    # @TODO: this seems to be too radical, need to clearify a reason
-    #        why not update all inputs (probably issue with new documents)
+    # New document should update id, also after uploading images form for existing
+    # document might change, so we reset all nested forms to reflect these updates.
+    # This implementation has some problems with jumping screen when using plugins
+    # also it requires complex implementation for data local storage caching.
     @$forms.remove()
     @forms = []
     @_add_forms()
