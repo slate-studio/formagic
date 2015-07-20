@@ -21,6 +21,11 @@ class @InputDatetime extends InputDate
 
   _update_value: ->
     mt = moment(@$inputTime.val(), 'LT')
+
+    if @$inputDate.val() == '' && ! mt.isValid()
+      @$input.val('')
+      return
+
     if ! mt.isValid()
       mt = moment('1:00 pm', 'LT')
 
@@ -52,7 +57,8 @@ class @InputDatetime extends InputDate
     @tzOffset  = @config.timezoneOffset
     @tzOffset ?= (new Date()).getTimezoneOffset() * -1
 
-    @value = moment(@value).utcOffset(@tzOffset).format()
+    m = moment(@value).utcOffset(@tzOffset)
+    @value = if m.isValid() then m.format() else ''
 
 
   _add_input: ->
@@ -87,6 +93,27 @@ class @InputDatetime extends InputDate
     @$inputTime.on 'change, keyup', (e) => @_update_value() ; @$input.trigger('change')
 
     @_update_time_input()
+
+    @_add_actions()
+
+
+  _add_actions: ->
+    @$actions =$ "<span class='input-actions'></span>"
+    @$label.append @$actions
+
+    @_add_remove_button()
+
+
+  _add_remove_button: ->
+    @$removeBtn =$ "<a href='#' class='remove'>Remove</a>"
+    @$actions.append @$removeBtn
+
+    @$removeBtn.on 'click', (e) =>
+      e.preventDefault()
+      @$inputTime.val('')
+      @$inputDate.val('')
+      @_update_date_label()
+      @_update_value()
 
 
   # PUBLIC ================================================

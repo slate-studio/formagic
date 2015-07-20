@@ -43,6 +43,25 @@ class @InputDate extends InputString
 
     @_update_date_label()
 
+    @_add_actions()
+
+
+  _add_actions: ->
+    @$actions =$ "<span class='input-actions'></span>"
+    @$label.append @$actions
+
+    @_add_remove_button()
+
+
+  _add_remove_button: ->
+    @$removeBtn =$ "<a href='#' class='remove'>Remove</a>"
+    @$actions.append @$removeBtn
+
+    @$removeBtn.on 'click', (e) =>
+      e.preventDefault()
+      @updateValue('')
+      @_update_date_label()
+
 
   # PUBLIC ================================================
 
