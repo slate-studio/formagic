@@ -84,8 +84,7 @@ class @InputDate extends InputString
 
   updateValue: (@value) ->
     @$input.val(@value)
-    # @TODO: check if required, cause change event might be triggered
-    #@_update_date_label()
+    @_update_date_label()
 
 
 chr.formInputs['date'] = InputDate
