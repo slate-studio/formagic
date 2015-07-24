@@ -48,8 +48,6 @@ $.fx.speeds.fast = 10
     buttonSource:      true
     pastePlainText:    true
     replaceDivs:       false
-    removeEmpty:       []
-    removeWithoutAttr: []
     scrollTarget:      chr.module.view.$content
     plugins:           [ 'table' ]
     buttons:           [ 'html'
