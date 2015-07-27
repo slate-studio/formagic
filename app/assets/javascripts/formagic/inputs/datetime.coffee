@@ -49,7 +49,8 @@ class @InputDatetime extends InputDate
 
   _update_date_label: ->
     m = moment(@$inputDate.val()).utcOffset(@tzOffset)
-    @$dateLabel.html ( if m.isValid() then m.format('dddd, MMM D, YYYY') else 'Pick a date' )
+    label = if m.isValid() then m.format('dddd, MMM D, YYYY') else "<span class='placeholder'>Pick a date</span>"
+    @$dateLabel.html label
 
 
   _normalized_value: ->

@@ -20,7 +20,7 @@ class @InputSelect2 extends InputSelect
     @config.beforeInitialize?(this)
 
     # https://select2.github.io/options.html
-    options = @config.pluginOptions || {}
+    options = @config.pluginOptions || { placeholder: @config.placeholder }
     @$input.select2(options)
 
     @config.onInitialize?(this)

@@ -9,6 +9,7 @@
 .form .input-stacked input.input-datetime-time { width: auto; display: inline-block; }
 
 .input-date-label  { display: inline-block; min-width: 7em; cursor: pointer; }
+.input-date-label .placeholder { color: $lightColor; }
 .input-timedate-at { color: $stableColor; margin: 0 .25em;  }
 
 .dd_ .dd_sw_ .dd_nav_.dd_prev_ { background-image: image-url('datedropper/prev.png'); }

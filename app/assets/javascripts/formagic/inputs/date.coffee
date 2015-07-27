@@ -26,7 +26,7 @@ class @InputDate extends InputString
       date_formatted = moment(date).format("dddd, MMMM Do, YYYY")
 
     else
-      date_formatted = 'Pick a date'
+      date_formatted = "<span class='placeholder'>Pick a date</span>"
 
     @$dateLabel.html(date_formatted)
 
