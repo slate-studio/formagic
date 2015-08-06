@@ -83,8 +83,10 @@ class @InputFile extends InputString
     if @filename
       @$el.removeClass('empty')
       @_update_inputs()
+
     else
       @$el.addClass('empty')
+      @$clearButton.hide()
 
 
   # PUBLIC ================================================

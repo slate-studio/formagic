@@ -36,4 +36,9 @@ class @InputText extends InputString
     @config.onInitialize?(this)
 
 
+  updateValue: (@value) ->
+    @$input.val(@value)
+    @$input.trigger 'keyup'
+
+
 chr.formInputs['text'] = InputText
