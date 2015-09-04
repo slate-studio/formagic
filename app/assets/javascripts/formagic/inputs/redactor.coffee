@@ -11,7 +11,6 @@
 # -----------------------------------------------------------------------------
 #
 # Dependencies:
-#= require redactor
 #= require vendor/redactor.table
 #= require vendor/redactor.fixedtoolbar
 #= require ./redactor_character
