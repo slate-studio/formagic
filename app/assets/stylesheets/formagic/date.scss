@@ -21,11 +21,11 @@
 }
 
 .input-date-label .placeholder {
-  color : $lightColor;
+  color : $formagic-placeholder-color;
 }
 
 .input-timedate-at {
-  color  : $stableColor;
+  color  : $formagic-base-color;
   margin : 0 .25em;
 }
 
@@ -35,14 +35,14 @@
 
 .dd_ { border: 0; }
 .dd_:after {
-  border-left : 1px solid $contrastColor!important;
-  border-top  : 1px solid $contrastColor!important;
+  border-left : 1px solid darken($formagic-border-color, 5%)!important;
+  border-top  : 1px solid darken($formagic-border-color, 5%)!important;
   top         : -6px!important;
 }
 
 .dd_ .dd_m_                         { font-size: 16px; }
 .dd_ .dd_d_                         { font-size: 38px; border-color: $formagic-border-color; }
-.dd_ .dd_d_ .dd_sl_ ul li em        { color: $stableColor!important; font-size: 13px; bottom: 4px; }
+.dd_ .dd_d_ .dd_sl_ ul li em        { color: lighten($formagic-base-color, 40%)!important; font-size: 13px; bottom: 4px; }
 .dd_ .dd_d_ .dd_sl_ ul li.dd_sunday { color: $formagic-assertive-color!important; }
 .dd_ .dd_sw_ .dd_sl_ li:hover       { background-color: $formagic-border-color; }
 

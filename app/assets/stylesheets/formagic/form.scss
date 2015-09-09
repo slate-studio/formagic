@@ -12,14 +12,14 @@
 
   textarea, input {
     @include no-outline;
-    @include placeholder { color: $lightColor; }
+    @include placeholder { color: $formagic-placeholder-color; }
     width : 100%;
   }
 
   .label {
     line-height : 1.8;
     display     : block;
-    color       : $stableColor;
+    color       : $formagic-label-color;
   }
 }
 
@@ -40,7 +40,7 @@
 // Disabled
 .input-disabled {
   textarea, input {
-    color : rgba($formagic-base-color, .8);
+    color : lighten($formagic-base-color, 50%);
   }
 }
 
@@ -70,24 +70,17 @@
   a {
     border-radius : 4px;
     padding       : .25em .75em;
-    color         : $stableColor;
     margin        : 0 0 0 .75em;
-    border        : 1px solid $lightColor;
+    border        : 1px solid $formagic-positive-color;
+    color         : $formagic-positive-color;
   }
 
   a:hover {
-    border-color  : $formagic-positive-color;
-    color         : $formagic-positive-color;
+    background-color : $formagic-positive-color;
+    border-color     : $formagic-positive-color;
+    color            : white;
   }
 }
-
-// Label
-// .form {
-//   label {
-//     display : block;
-//     a { color : $formagic-positive-color; }
-//   }
-// }
 
 
 

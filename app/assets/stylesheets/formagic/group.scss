@@ -9,7 +9,7 @@
 .group-edit {
   @include position(absolute, null .5em null null);
 
-  color          : $stableColor;
+  color          : $formagic-label-color;
   font-size      : .9em;
   text-transform : lowercase;
   margin-top     : -1.5em;

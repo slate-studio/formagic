@@ -41,10 +41,10 @@
 }
 
 .select2-container--default .select2-search--dropdown .select2-search__field {
-  border-color : $contrastColor;
+  border-color : darken($formagic-border-color, 5%);
 
   &:focus {
-    border-color : $stableColor;
+    border-color : $formagic-label-color;
   }
 }
 

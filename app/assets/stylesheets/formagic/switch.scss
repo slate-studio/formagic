@@ -8,7 +8,7 @@
   $knob-radius              : $switch-height - ($switch-padding * 2);
   $knob-width               : $knob-size;
   $switch-background        : white;
-  $switch-border-background : $contrastColor;
+  $switch-border-background : darken($formagic-border-color, 5%);
   $switch-shadow            : 0 0px 2px transparentize(black, 0.6);
 
   border-radius : $switch-radius;

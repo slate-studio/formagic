@@ -52,8 +52,8 @@
       content   : '+';
       display   : block;
       height    : 24px;
-      color     : $contrastColor;
       width     : 40px;
+      color     : darken($formagic-border-color, 5%);
     }
   }
 

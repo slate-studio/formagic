@@ -27,7 +27,7 @@
 // placeholder
 
 .redactor-placeholder:after {
-  color : $lightColor!important;
+  color : $formagic-placeholder-color!important;
   left  : .5em;
   top   : 18px;
 }
@@ -50,14 +50,14 @@
 }
 
 #redactor-modal footer button {
-  &.redactor-modal-close-btn { background-color: $lightColor;
-    &:hover { background-color: $lightColor;     opacity: .75; } }
+  &.redactor-modal-close-btn { background-color: $formagic-placeholder-color;
+    &:hover { background-color: $formagic-placeholder-color; opacity: .75; } }
 
   &.redactor-modal-action-btn { background-color: $formagic-positive-color;
-    &:hover { background-color: $formagic-positive-color;  opacity: .75; color: white; } }
+    &:hover { background-color: $formagic-positive-color;    opacity: .75; color: white; } }
 
   &.redactor-modal-delete-btn { background-color: $formagic-assertive-color;
-    &:hover { background-color: $formagic-assertive-color; opacity: .75; color: white; } }
+    &:hover { background-color: $formagic-assertive-color;   opacity: .75; color: white; } }
 }
 
 

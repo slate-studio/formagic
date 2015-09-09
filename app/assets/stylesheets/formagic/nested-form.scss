@@ -61,7 +61,7 @@
     @include position(absolute, null 7px null null);
     line-height : 1.35em;
     content     : '\00d7';
-    color       : $stableColor;
+    color       : $formagic-label-color;
   }
 
   &:hover {
