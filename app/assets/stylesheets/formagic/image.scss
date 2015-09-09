@@ -1,23 +1,24 @@
-// image ::: based on file
+/* Image Input (based on file) ---------------------------- */
 
-.form {
+.input-image {
+  @extend .input-file;
 
-  .input-image { @extend .input-file; }
+  &:not(.empty) {
+    @include position(relative);
+    padding-left : 6.5em;
 
-  .input-image:not(.empty) {
-    padding-left: 6.5em;
-    position: relative;
     img {
-      position: absolute;
-      border-radius: 4px;
-      left: 1em;
-      top: .8em;
-      width: 4.7em;
+      @include position(absolute, .8em null null 1em);
+      border-radius : 4px;
+      width         : 4.7em;
     }
   }
 
-  .input-image.input-disabled {
+  &.input-disabled {
     min-height : 102px;
   }
-
 }
+
+
+
+

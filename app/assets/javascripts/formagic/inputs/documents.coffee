@@ -50,7 +50,7 @@ class @InputForm
   # PRIVATE ===============================================
 
   _create_el: ->
-    @$el =$ "<div class='input-stacked nested-forms input-#{ @config.klassName }'>"
+    @$el =$ "<div class='form-input nested-forms input-#{ @config.klassName }'>"
 
 
   _add_label: ->

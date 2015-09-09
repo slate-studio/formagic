@@ -46,7 +46,7 @@ class @InputString
 
 
   _create_el: ->
-    @$el =$ "<label for='#{ @name }' class='input-#{ @config.type } input-#{ @config.klass } input-#{ @config.klassName }'>"
+    @$el =$ "<label for='#{ @name }' class='#{ @config.klass } input-#{ @config.type } input-#{ @config.klassName }'>"
 
 
   _add_label: ->
@@ -85,8 +85,7 @@ class @InputString
 
 
   _add_placeholder: ->
-    if @config.klass in [ 'placeholder', 'stacked' ]
-      @$input.attr 'placeholder', @config.label
+    @$input.attr 'placeholder', @config.type
 
     if @config.placeholder
       @$input.attr 'placeholder', @config.placeholder

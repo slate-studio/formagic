@@ -1,5 +1,65 @@
+@import "normalize-rails";
+
+@mixin custom-scrollbar($color, $bg-color, $radius) {
+  &::-webkit-scrollbar       { width: 6px; background-color: $bg-color; }
+  &::-webkit-scrollbar-thumb { background-color: $color; border-radius: $radius; }
+}
+
+@mixin bottom-border($color) {
+  &:after {
+    @include position(absolute, null 0px 0px 1em);
+    background-color : $color;
+    content          : '';
+    display          : block;
+    height           : 1px;
+  }
+}
+
+@mixin no-bottom-border {
+  &:after {
+    visibility : hidden;
+  }
+}
+
+@mixin no-focus-outline {
+  &:focus {
+    outline : none;
+  }
+}
+
+@mixin no-outline {
+  @include no-focus-outline;
+  outline : none;
+  border  : none;
+}
+
+@mixin icon-reorder($color) {
+  display : block;
+  height  : 40px;
+  width   : 40px;
+
+  &:before {
+    content : '';
+    display : block;
+    height  : 40px;
+    width   : 40px;
+    background-position : 10px 10px;
+    background-repeat   : no-repeat;
+    background-image    : url("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><line x1='0' y1='8' x2='20' y2='8' stroke-width='2' stroke='#{ $color }' /><line x1='0' y1='12' x2='20' y2='12' stroke-width='2' stroke='#{ $color }' /></svg>");
+    background-size     : 20px 20px;
+  }
+}
+
+$formagic-base-color      : rgb( 89, 89, 89) !default;
+$formagic-positive-color  : rgb( 74,135,238) !default;
+$formagic-assertive-color : rgb(239, 78, 58) !default;
+$formagic-border-color    : rgb(246,246,246) !default;
+
+$stableColor:    rgb(178,178,178) !default;
+$lightColor:     rgb(210,210,210) !default;
+$contrastColor:  rgb(230,230,230) !default;
+
 @import "formagic/form";
-@import "formagic/label";
 @import "formagic/checkbox";
 @import "formagic/color";
 @import "formagic/date";
@@ -10,7 +70,10 @@
 @import "formagic/nested-form";
 @import "formagic/redactor-character";
 @import "formagic/select";
-@import "formagic/select2";
 @import "formagic/string";
 @import "formagic/switch";
 @import "formagic/text";
+
+
+
+

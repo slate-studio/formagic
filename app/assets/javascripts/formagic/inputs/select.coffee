@@ -15,7 +15,7 @@ class @InputSelect extends InputString
   # PRIVATE ===============================================
 
   _create_el: ->
-    @$el =$ "<div class='input-#{ @config.type } input-#{ @config.klass } input-#{ @config.klassName }'>"
+    @$el =$ "<div class='form-input input-#{ @config.type } input-#{ @config.klassName }'>"
 
 
   _add_input: ->

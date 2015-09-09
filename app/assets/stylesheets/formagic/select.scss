@@ -1,5 +1,115 @@
-// select
+// Select & Select 2 Inputs -------------------------------
 
-.form {
-  .input-select select { margin-top: 0.15em; }
+@import "vendor/select2";
+
+.input-select {
+  select {
+    margin-top : 0.15em;
+  }
 }
+
+.input-select2 {
+  padding-bottom : .3em;
+}
+
+.select2-dropdown,
+.select2-container--default .select2-selection--single {
+  border-color  : $formagic-border-color;
+  border-radius : 0;
+}
+
+.select2-container--default .select2-selection--single {
+  border : 0;
+}
+
+.select2-container--open .select2-dropdown--above {
+  border-top : none;
+  border     : 1px solid $formagic-border-color;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+  line-height : 1.4em;
+  color       : $formagic-base-color;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow b {
+  border-color : $formagic-positive-color transparent transparent transparent;
+}
+
+.select2-container--default.select2-container--open .select2-selection--single .select2-selection__arrow b {
+  border-color : transparent transparent $formagic-positive-color transparent;
+}
+
+.select2-container--default .select2-search--dropdown .select2-search__field {
+  border-color : $contrastColor;
+
+  &:focus {
+    border-color : $stableColor;
+  }
+}
+
+.select2-container--default * {
+  @include no-focus-outline;
+}
+
+.select2-container--default .select2-results__option[aria-selected=true] {
+  background-color : $formagic-border-color;
+  color            : $formagic-base-color;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+  background-color : $formagic-positive-color;
+  color            : white;
+}
+
+.select2-container--default .select2-results__option[aria-selected=true] {
+  &:hover {
+    background-color : $formagic-positive-color;
+    color            : white;
+  }
+}
+
+.select2-container--default .select2-results > .select2-results__options {
+  @include custom-scrollbar(rgba($formagic-base-color, .5), $formagic-border-color, 3px);
+}
+
+.select2-dropdown--below {
+  top : -4px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+  left : 1px;
+}
+
+.select2-container .select2-selection--single .select2-selection__rendered {
+  padding-right : 8px;
+  padding-left  : 20px;
+  padding-top   : 2px;
+}
+
+.select2-search--dropdown {
+  padding : 0;
+  margin  : 0 -1px;
+}
+
+.select2-container .select2-search--inline {
+  padding-left : .5em;
+}
+
+.select2-container--default .select2-selection--multiple {
+  border-radius : 0;
+}
+
+.select2-container .select2-selection--multiple {
+  min-height : 28px;
+}
+
+.select2-container--default .select2-search--inline .select2-search__field,
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+  margin-top : 3px;
+}
+
+
+
+
+

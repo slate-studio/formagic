@@ -1,14 +1,27 @@
-// string
+/* String Input ------------------------------------------- */
 
-.form {
-
-  .input-string  {
-    .twitter-typeahead { width: 100%; }
-    .tt-suggestions    { padding: .1em .5em; margin: 0 0 0 -.5em; background: rgba(255,255,255, .95); }
-    .tt-suggestion     { cursor: pointer; opacity: .5;
-      p                { line-height: 1.5; margin: 0; }
-      &.tt-cursor      { opacity: 1; }
-    }
+.input-string  {
+  .twitter-typeahead {
+    width : 100%;
   }
 
+  .tt-suggestions {
+    background : rgba(255,255,255, .95);
+    padding    : .1em .5em;
+    margin     : 0 0 0 -.5em;
+  }
+
+  .tt-suggestion {
+    opacity : .5;
+    cursor  : pointer;
+
+    p {
+      line-height : 1.5;
+      margin      : 0;
+    }
+
+    &.tt-cursor {
+      opacity : 1;
+    }
+  }
 }

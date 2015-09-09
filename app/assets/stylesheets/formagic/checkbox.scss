@@ -1,8 +1,16 @@
-// checkbox
+/* Checkbox Input ----------------------------------------- */
 
-.form {
-  .input-checkbox { padding: .8em 1em 1em;
-    input  { display: inline; width: auto; margin-right: .5em; }
-    .label { display: inline; cursor: pointer; }
+.input-checkbox {
+  padding : .8em 1em 1em;
+
+  input {
+    margin-right : .5em;
+    display      : inline;
+    width        : auto;
+  }
+
+  .label {
+    display : inline;
+    cursor  : pointer;
   }
 }

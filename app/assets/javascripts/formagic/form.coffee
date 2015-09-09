@@ -113,7 +113,7 @@ class @Form
 
     inputConfig.label    ?= name.titleize()
     inputConfig.type     ?= 'string'
-    inputConfig.klass    ?= 'stacked'
+    inputConfig.klass    ?= 'form-input'
     inputConfig.klassName = name
 
     inputClass  = chr.formInputs[inputConfig.type]

@@ -1,41 +1,94 @@
-// form ::: generic components
+// Form (generic components) ------------------------------ */
 
-.form {
+// General
+.form-input {
+  @include position(relative);
+  @include bottom-border($formagic-border-color);
 
-  // General
+  padding : .5em 1em .9em;
+  display : block;
 
-  .input-stacked {
-    @include position(relative); padding: .5em 1em .9em;
-    @include bottom-border($neutralColor); &:last-child { @include no-bottom-border; }
+  &:last-child { @include no-bottom-border; }
 
-    textarea, input {  width: 100%; @include no-outline; @include placeholder { color: $lightColor; } }
-
-    .label { display: block; line-height: 1.8; color: $stableColor; }
+  textarea, input {
+    @include no-outline;
+    @include placeholder { color: $lightColor; }
+    width : 100%;
   }
 
-  // Validation error
-
-  .error-message { color: $assertiveColor; font-size: .8em; margin-left: .5em; }
-
-  // Required
-
-  .input-required .label:before { content: '*'; color: $assertiveColor; @include position(absolute, null null null .38em); }
-
-  // Disabled
-
-  .input-disabled { textarea, input { color: lighten($black, 20%); } }
-
-  // Character counter
-
-  .input-character-counter { font-size: .8em; margin-left: .5em; &.exceeds { color: $assertiveColor; } }
-
-  // Information box
-
-  .form-information {
-    margin     : 1em 1em 0;
-    padding    : 1em;
-    background : $neutralColor;
-    text-align : center;
+  .label {
+    line-height : 1.8;
+    display     : block;
+    color       : $stableColor;
   }
-
 }
+
+// Validation error
+.error-message {
+  margin-left : .5em;
+  font-size   : .8em;
+  color       : $formagic-assertive-color;
+}
+
+// Required
+.input-required .label:before {
+  @include position(absolute, null null null .38em);
+  content : '*';
+  color   : $formagic-assertive-color;
+}
+
+// Disabled
+.input-disabled {
+  textarea, input {
+    color : rgba($formagic-base-color, .8);
+  }
+}
+
+// Character counter
+.input-character-counter {
+  margin-left : .5em;
+  font-size   : .8em;
+
+  &.exceeds {
+    color : $formagic-assertive-color;
+  }
+}
+
+// Information box
+.form-information {
+  background : $formagic-border-color;
+  text-align : center;
+  margin     : 1em 1em 0;
+  padding    : 1em;
+}
+
+// Input Actions used to the right from label
+.input-actions {
+  font-size       : .8em;
+  float           : right;
+
+  a {
+    border-radius : 4px;
+    padding       : .25em .75em;
+    color         : $stableColor;
+    margin        : 0 0 0 .75em;
+    border        : 1px solid $lightColor;
+  }
+
+  a:hover {
+    border-color  : $formagic-positive-color;
+    color         : $formagic-positive-color;
+  }
+}
+
+// Label
+// .form {
+//   label {
+//     display : block;
+//     a { color : $formagic-positive-color; }
+//   }
+// }
+
+
+
+

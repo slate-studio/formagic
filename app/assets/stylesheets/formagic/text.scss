@@ -1,9 +1,12 @@
-// text
+/* Text Input --------------------------------------------- */
 
-.form {
+.input-text {
+  min-height : 82px;
 
-  .input-text { min-height: 82px;
-    textarea  { resize: none; overflow: auto; box-sizing: border-box; min-height: 20px; }
+  textarea {
+    box-sizing : border-box;
+    min-height : 20px;
+    overflow   : auto;
+    resize     : none;
   }
-
 }

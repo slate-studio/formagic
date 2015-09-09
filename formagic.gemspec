@@ -25,6 +25,9 @@ This supposed to be working with Rails on the first place.
   s.executables   = s.files.grep(%r{^exe/}) { |f| File.basename(f) }
   s.require_paths = ["lib"]
 
+  s.add_dependency 'bourbon',         '>= 3.2'
+  s.add_dependency 'normalize-rails', '>= 3.0'
+
   s.add_development_dependency "bundler", "~> 1.9"
   s.add_development_dependency "rake",    "~> 10.0"
 end

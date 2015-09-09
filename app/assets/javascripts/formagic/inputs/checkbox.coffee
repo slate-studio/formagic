@@ -22,7 +22,7 @@ class @InputCheckbox extends InputString
   # PRIVATE ===============================================
 
   _create_el: ->
-    @$el =$ "<label for='#{ @name }' class='input-#{ @config.type } input-#{ @config.klass } input-#{ @config.klassName }'>"
+    @$el =$ "<label for='#{ @name }' class='form-input input-#{ @config.type } input-#{ @config.klassName }'>"
 
 
   _safe_value: ->

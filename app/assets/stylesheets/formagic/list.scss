@@ -1,39 +1,83 @@
-// list :: supports reordering + typeahead
+// List (supports reordering + typeahead) ----------------- */
 
-.form {
+.input-list {
+  input {
+    padding-left : 2em;
+    margin-top   : .1em;
+  }
 
-  .input-list {
-    input   { padding-left: 2em; margin-top: .1em; }
-    ul      { line-height: 1.5; margin: 0 0 0 2em; list-style: none; padding: 0; }
-    ul li   { @include user-select(none); position: relative; }
-    ul li a { color: $assertiveColor; font-size: .75em; }
+  ul {
+    line-height : 1.5;
+    list-style  : none;
+    padding     : 0;
+    margin      : 0 0 0 2em;
 
-    .slip-reordering { color: $positiveColor; }
+    li {
+      @include position(relative);
+      @include user-select(none);
 
-    .icon-reorder {
-      width:  25px;
-      height: 25px;
-      left:  -1.75em;
-      &:before { left: 0; top: 9px; }
-      &:after  { left: 0; top: 14px; }
-    }
-
-    .twitter-typeahead       { width: 100%; }
-    .twitter-typeahead:after {
-      content: '+';
-      display: block;
-      width: 40px;
-      height: 24px;
-      position: absolute; left: 12px; top: -3px;
-      font-size: 22px;
-      color: $contrastColor;
-    }
-
-    .tt-suggestions { padding: .1em .5em; margin: 0 0 0 1.55em; background: rgba(255,255,255, .95); }
-    .tt-suggestion  { cursor: pointer; opacity: .5;
-      p             { line-height: 1.5; margin: 0; }
-      &.tt-cursor   { opacity: 1; }
+      a {
+        font-size : .75em;
+        color     : $formagic-assertive-color;
+      }
     }
   }
 
+  .slip-reordering {
+    color : $formagic-positive-color;
+  }
+
+  .icon-reorder {
+    height : 25px;
+    width  : 25px;
+    left   : -1.75em;
+
+    &:before {
+      left : 0;
+      top  : 9px;
+    }
+
+    &:after {
+      left : 0;
+      top  : 14px;
+    }
+  }
+
+  .twitter-typeahead {
+    width: 100%;
+
+    &:after {
+      @include position(absolute, -3px null null 12px);
+      font-size : 22px;
+      content   : '+';
+      display   : block;
+      height    : 24px;
+      color     : $contrastColor;
+      width     : 40px;
+    }
+  }
+
+  .tt-suggestions {
+    background : rgba(255,255,255, .95);
+    padding    : .1em .5em;
+    margin     : 0 0 0 1.55em;
+  }
+
+  .tt-suggestion  {
+    opacity : .5;
+    cursor  : pointer;
+
+    p {
+      line-height : 1.5;
+      margin      : 0;
+    }
+
+    &.tt-cursor {
+      opacity : 1;
+    }
+  }
 }
+
+
+
+
