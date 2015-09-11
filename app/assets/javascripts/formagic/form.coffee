@@ -160,9 +160,10 @@ class @Form
 
   _forms: ->
     forms = [ @ ]
+
     addNestedForms = (form) ->
       for name, input of form.inputs
-        if input.config.type == 'form' || input.config.type == 'documents'
+        if input.config.type == 'form' || input.config.type == 'documents' || input.config.type == 'document'
           forms = forms.concat(input.forms)
           addNestedForms(form) for form in input.forms
     addNestedForms(@)

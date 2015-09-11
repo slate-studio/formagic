@@ -57,6 +57,8 @@ class @InputDocument
   _add_forms: ->
     @nestedForm = @_render_form(@nestedObject, @config.namePrefix, @config)
 
+    @forms = [ @nestedForm ]
+
     @$form = @nestedForm.$el
     @$label.after @$form
 
