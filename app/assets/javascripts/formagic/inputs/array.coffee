@@ -15,22 +15,17 @@
 # All items should be unique for now.
 #
 # Dependencies:
-#= require ./list_reorder
-#= require ./list_typeahead
+#= require formagic/inputs/list_reorder
 #
 # -----------------------------------------------------------------------------
 
-class @InputList extends InputString
-
+class @InputArray extends InputString
   # PRIVATE ===============================================
 
   _add_input: ->
-    # @TODO: check if we can use @config.name instead of @config.target
-    # @config.target ?= @config.klassName
-
     # hidden input that stores ids, we use __LIST__ prefix to identify
     # ARRAY input type and process it's value while form submission.
-    name = if @config.namePrefix then "#{ @config.namePrefix }[__LIST__#{ @config.target }]" else "[__LIST__#{ @config.target }]"
+    name = if @config.namePrefix then "#{ @config.namePrefix }[__LIST__#{ @config.klassName }]" else "[__LIST__#{ @config.klassName }]"
 
     @$input =$ "<input type='hidden' name='#{ name }' value='' />"
     @$el.append @$input
@@ -40,71 +35,60 @@ class @InputList extends InputString
     @$items =$ "<ul class='#{ @reorderContainerClass }'></ul>"
     @$el.append @$items
 
-    # other options might be added here (static collection)
-
-    @_create_typeahead_el(@config.typeahead.placeholder)
+    @config.placeholder ||= 'Add new value'
+    @_create_string_input_el(@config.placeholder)
 
     @_render_items()
     @_update_input_value()
 
 
+  _values: ->
+    @$items.children('li').map((i, el) -> $(el).data('value')).get()
+
+
   _update_input_value: ->
-    ids = []
-    @$items.children('li').each (i, el) -> ids.push $(el).attr('data-id')
+    input_value = @_values().join('|||')
 
-    value = ids.join('|||')
-
-    @$input.val(value)
+    @$input.val(input_value)
     @$input.trigger('change')
 
 
   _remove_item: ($el) ->
-    id = $el.attr('data-id')
-    delete @objects[id]
-
     $el.parent().remove()
     @_update_input_value()
 
 
-  _ordered_ids: ->
-    ids = @$input.val().split(',')
-    if ids[0] == '' then ids = []
-    return ids
-
-
   _render_items: ->
     @$items.html('')
-    @objects = {}
 
-    for o in @value
-      @_render_item(o)
+    for v in @value
+      @_render_item(v)
 
 
   _render_item: (o) ->
-    @_add_object(o)
+    value = _escapeHtml(o)
 
-    if @config.itemTemplate
-      item = @config.itemTemplate(o)
-    else
-      item = o[@config.titleFieldName]
-
-    listItem =$ """<li data-id='#{ o._id }'>
+    listItem =$ """<li data-value='#{ value }'>
                      <span class='icon-reorder' data-container-class='#{ @reorderContainerClass }'></span>
-                     #{ item }
+                     #{ value }
                      <a href='#' class='action_remove'>Remove</a>
                    </li>"""
     @$items.append(listItem)
+
     @_update_input_value()
 
 
-  _add_object: (o) ->
-    @_normalize_object(o)
-    @objects[o._id] = o
+  _create_string_input_el: (placeholder) ->
+    @$stringInput =$ "<input type='text' placeholder='#{ placeholder }' />"
+    @$el.append @$stringInput
 
 
-  _normalize_object: (o) ->
-    o._id ?= o.id
-    if ! o._id then console.log("::: list item is missing an 'id' or '_id' :::")
+  _bind_string_input: ->
+    @$stringInput.on 'keyup', (e) =>
+      if e.keyCode == 13
+        val = $(e.currentTarget).val()
+        @_render_item(val)
+        $(e.currentTarget).val('')
 
 
   # PUBLIC ================================================
@@ -112,8 +96,8 @@ class @InputList extends InputString
   initialize: ->
     @config.beforeInitialize?(this)
 
-    # typeahead
-    @_bind_typeahead()
+    # input for new values
+    @_bind_string_input()
 
     # remove
     @$items.on 'click', '.action_remove', (e) =>
@@ -130,21 +114,14 @@ class @InputList extends InputString
 
 
   hash: (hash={}) ->
-    hash[@config.target] = @$input.val()
-    ordered_objects = []
-
-    for id in @_ordered_ids()
-      ordered_objects.push(@objects[id])
-
-    hash[@config.klassName] = ordered_objects
+    hash[@config.klassName] = @_values()
     return hash
 
 
-include(InputList, inputListReorder)
-include(InputList, inputListTypeahead)
+include(InputArray, inputListReorder)
 
 
-chr.formInputs['list'] = InputList
+chr.formInputs['array'] = InputArray
 
 
 

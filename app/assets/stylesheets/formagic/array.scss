@@ -1,0 +1,51 @@
+/* Array Input -------------------------------------------- */
+
+.input-array {
+  input {
+    padding-left : 2.5em;
+    margin-top   : .25em;
+  }
+
+  ul {
+    margin      : 0 0 0 2.5em;
+    padding     : 0;
+    list-style  : none;
+    line-height : 1.5;
+
+    li {
+      @include user-select(none); position: relative;
+
+      a {
+        color     : $formagic-assertive-color;
+        font-size : .75em;
+        &:hover {
+          opacity : .5;
+        }
+      }
+    }
+  }
+
+  .slip-reordering {
+    color : $formagic-positive-color;
+  }
+
+  .icon-reorder {
+    @include position(absolute);
+    left   : -2.5em;
+    height : 1.5em;
+    &:before {
+      background-position : 10px 3px;
+      height              : 1.5em;
+    }
+  }
+
+  // input:after {
+  //   content: '+';
+  //   display: block;
+  //   width: 40px;
+  //   height: 24px;
+  //   position: absolute; left: 12px; top: -3px;
+  //   font-size: 22px;
+  //   color: $formagic-border-color;
+  // }
+}

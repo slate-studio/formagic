@@ -21,3 +21,4 @@
 #= require ./formagic/inputs/select2
 #= require ./formagic/inputs/time
 #= require ./formagic/inputs/url
+#= require ./formagic/inputs/array

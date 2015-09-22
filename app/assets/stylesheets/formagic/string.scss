@@ -1,6 +1,10 @@
 /* String Input ------------------------------------------- */
 
 .input-string  {
+  input {
+    line-height: 1.2;
+  }
+
   .twitter-typeahead {
     width : 100%;
   }

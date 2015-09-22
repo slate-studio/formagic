@@ -4,9 +4,10 @@
   min-height : 82px;
 
   textarea {
-    box-sizing : border-box;
-    min-height : 20px;
-    overflow   : auto;
-    resize     : none;
+    box-sizing  : border-box;
+    min-height  : 20px;
+    overflow    : auto;
+    resize      : none;
+    line-height : 1.2;
   }
 }

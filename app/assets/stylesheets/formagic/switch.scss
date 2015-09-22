@@ -77,7 +77,8 @@
 .input-switch {
   padding-top: .75em;
   .label  {
-    cursor : pointer;
+    cursor      : pointer;
+    line-height : 1.9;
   }
   .switch {
     @include switch;
