@@ -33,6 +33,8 @@ class @InputMarkdown extends InputString
   _add_input: ->
     if @config.htmlFieldName
       @$inputHtml =$ "<input type='hidden' name='[#{ @config.htmlFieldName }]' />"
+      if @object
+        @$inputHtml.val(@object[@config.htmlFieldName])
       @$el.append @$inputHtml
 
     @$input =$ "<input type='hidden' name='#{ @name }' value='#{ @_safe_value() }' />"
