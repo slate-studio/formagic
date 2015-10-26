@@ -80,6 +80,8 @@ class @InputMarkdown extends InputString
 
     @session.on 'change', (e) => @_update_inputs()
 
+    @_update_inputs()
+
     @config.onInitialize?(this)
 
 
@@ -87,6 +89,11 @@ class @InputMarkdown extends InputString
     @session.setValue(@value)
     @_update_inputs()
 
+
+  hash: (hash={}) ->
+    hash[@config.htmlFieldName] = @$inputHtml.val()
+    hash[@config.klassName]     = @$input.val()
+    return hash
 
 chr.formInputs['markdown'] = InputMarkdown
 
