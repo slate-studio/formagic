@@ -1,5 +1,10 @@
 @import "normalize-rails";
 
+// Firefox fix for disabled inputs
+input[type="text"]:disabled {
+  background: initial;
+}
+
 $formagic-base-color        : #333 !default;
 $formagic-positive-color    : rgb( 74,135,238) !default;
 $formagic-assertive-color   : rgb(239, 78, 58) !default;
