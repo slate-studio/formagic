@@ -24,3 +24,6 @@
 # require ./formagic/inputs/redactor
 # require ./formagic/inputs/html
 # require ./formagic/inputs/markdown
+
+@Icons ?= {}
+@Icons.reorderDocuments = "<i class='fa fa-ellipsis-v'></i>"

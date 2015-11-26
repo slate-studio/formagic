@@ -45,21 +45,11 @@ $formagic-border-color      : #eee !default;
   border  : none;
 }
 
-@mixin icon-reorder($color) {
-  display : block;
-  height  : 40px;
-  width   : 40px;
-
-  &:before {
-    content : '';
-    display : block;
-    height  : 40px;
-    width   : 40px;
-    background-position : 10px 10px;
-    background-repeat   : no-repeat;
-    background-image    : url("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><line x1='0' y1='8' x2='20' y2='8' stroke-width='2' stroke='#{ $color }' /><line x1='0' y1='12' x2='20' y2='12' stroke-width='2' stroke='#{ $color }' /></svg>");
-    background-size     : 20px 20px;
-  }
+@mixin reorder-icon-base {
+  @include position(absolute);
+  text-align: center;
+  z-index: 10;
+  cursor: pointer;
 }
 
 @import "formagic/form";
@@ -77,6 +67,3 @@ $formagic-border-color      : #eee !default;
 @import "formagic/switch";
 @import "formagic/text";
 @import "formagic/array";
-
-
-

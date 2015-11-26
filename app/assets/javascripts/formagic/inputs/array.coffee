@@ -7,7 +7,7 @@
 # -----------------------------------------------------------------------------
 
 # -----------------------------------------------------------------------------
-# INPUT LIST
+# INPUT ARRAY
 # -----------------------------------------------------------------------------
 # Allows to create/delete/reorder list items connected to dynamic or static
 # collection. Value should be an array of objects.
@@ -67,9 +67,11 @@ class @InputArray extends InputString
 
   _render_item: (o) ->
     value = _escapeHtml(o)
-
     listItem =$ """<li data-value='#{ value }'>
-                     <span class='icon-reorder' data-container-class='#{ @reorderContainerClass }'></span>
+                     <span class='icon-reorder'
+                           data-container-class='#{ @reorderContainerClass }'>
+                       #{ Icons.reorderDocuments }
+                     </span>
                      #{ value }
                      <a href='#' class='action_remove'>Remove</a>
                    </li>"""

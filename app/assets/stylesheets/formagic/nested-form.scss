@@ -22,18 +22,21 @@
   }
 
   & > ul > li > .icon-reorder {
-    @include position(absolute);
-    z-index : 1;
-    left    : 0;
-    top     : 1em;
+    @include reorder-icon-base();
+    right: 0;
+    top: 20px;
+    margin-right: -30px;
+    line-height: 40px;
+    width: 30px;
+
+    &:hover {
+      color: $formagic-positive-color;
+    }
   }
 
   & > ul li.reorderable {
+    margin-right: 0.75em;
     background-color : white;
-
-    & > .form-input:first-of-type {
-      padding-left : 2.5em;
-    }
   }
 }
 
@@ -53,24 +56,23 @@
 }
 
 .nested-form-delete {
-  @include position(absolute, .35em .3em null null);
+  @include position(absolute, 0 -1.5em null null);
   @include hide-text;
 
-  background-color : rgba(0,0,0,.05);
-  border-radius    : 1em;
-  z-index          : 1;
-  height           : 1.5em;
-  width            : 1.5em;
+  border-radius: 1em;
+  height: 1.25em;
+  width: 1.25em;
+  z-index: 1;
+  line-height: 1;
 
   &:before {
-    @include position(absolute, null .45em null null);
-    line-height : 1.35em;
-    content     : '\00d7';
-    color       : $formagic-label-color;
+    @include position(absolute, null .325em null null);
+    content: '\00d7';
+    color: $formagic-label-color;
   }
 
   &:hover {
-    background-color : $formagic-positive-color;
+    background-color : $formagic-assertive-color;
 
     &:before {
       color : white;

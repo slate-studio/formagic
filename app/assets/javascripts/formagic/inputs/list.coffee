@@ -89,7 +89,10 @@ class @InputList extends InputString
       item = o[@config.titleFieldName]
 
     listItem =$ """<li data-id='#{ o._id }'>
-                     <span class='icon-reorder' data-container-class='#{ @reorderContainerClass }'></span>
+                     <span class='icon-reorder'
+                           data-container-class='#{ @reorderContainerClass }'>
+                       #{ Icons.reorderDocuments }
+                     </span>
                      #{ item }
                      <a href='#' class='action_remove'>Remove</a>
                    </li>"""
@@ -145,7 +148,3 @@ include(InputList, inputListTypeahead)
 
 
 chr.formInputs['list'] = InputList
-
-
-
-

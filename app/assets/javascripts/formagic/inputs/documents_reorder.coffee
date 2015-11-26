@@ -54,7 +54,11 @@
 
 
   _add_form_reorder_button: (form) ->
-    form.$el.prepend("""<div class='icon-reorder' data-container-class='#{@reorderContainerClass}'></div>""").addClass('reorderable')
+    reorderIcon = """<div class='icon-reorder'
+                          data-container-class='#{@reorderContainerClass}'>
+                       #{ Icons.reorderDocuments }
+                     </div>"""
+    form.$el.prepend(reorderIcon).addClass('reorderable')
 
 
   _find_form_by_target: (el) ->
