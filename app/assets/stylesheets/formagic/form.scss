@@ -32,7 +32,7 @@
 
 // Required
 .input-required .label:before {
-  @include position(absolute, null null null .38em);
+  @include position(absolute, null null null .45em);
   content : '*';
   color   : $formagic-assertive-color;
 }

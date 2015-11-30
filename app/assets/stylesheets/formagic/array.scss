@@ -2,7 +2,7 @@
 
 .input-array {
   input {
-    padding-left: 2.5em;
+    padding-left: 1em;
     margin-top: .25em;
   }
 
@@ -33,6 +33,7 @@
     @include reorder-icon-base();
     margin-left: -20px;
     width: 20px;
+    color: $formagic-secondary-color;
     &:hover { color: $formagic-positive-color; }
   }
 }

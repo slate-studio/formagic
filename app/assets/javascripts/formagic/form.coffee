@@ -83,6 +83,15 @@ class @Form
   _generate_inputs_group: (klassName, groupConfig) ->
     $group =$ """<div class='group #{ klassName }' />"""
 
+    if groupConfig.groupClass
+      $group.addClass groupConfig.groupClass
+
+    if groupConfig.title
+      $title =$ "<span class='group-title'>#{ groupConfig.title }</span>"
+      $header =$ """<header class='group-header'></header>"""
+      $header.append $title
+      $group.append $header
+
     if groupConfig.inputs
       @_build_schema(groupConfig.inputs, $group)
 
@@ -122,8 +131,13 @@ class @Form
     inputName = if @config.namePrefix then "#{ @config.namePrefix }[#{ name }]" else "[#{ name }]"
 
     # add prefix for nested form inputs
-    if inputConfig.type == 'form' || inputConfig.type == 'documents' || inputConfig.type == 'document'
+    if inputConfig.type == 'form' ||
+       inputConfig.type == 'documents' ||
+       inputConfig.type == 'document'
       inputConfig.namePrefix = inputName.replace("[#{ name }]", "[#{ name }_attributes]")
+
+    else if inputConfig.type == 'hash'
+      inputConfig.namePrefix = inputName
 
     else
       inputConfig.namePrefix = @config.namePrefix
@@ -163,7 +177,10 @@ class @Form
 
     addNestedForms = (form) ->
       for name, input of form.inputs
-        if input.config.type == 'form' || input.config.type == 'documents' || input.config.type == 'document'
+        if input.config.type == 'form' ||
+           input.config.type == 'documents' ||
+           input.config.type == 'document' ||
+           input.config.type == 'hash'
           forms = forms.concat(input.forms)
           addNestedForms(form) for form in input.forms
     addNestedForms(@)

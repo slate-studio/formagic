@@ -1,11 +1,29 @@
 /* Group (for inputs) ------------------------------------- */
+.group-panel {
+  box-shadow: 0 0 1px rgba(0,0,0,0.15);
+  background-color: $white-color;
+  margin: 1.5em 0 0;
+}
+
+.group-header {
+  padding: .75em 1em;
+  border-bottom: 1px solid $formagic-border-color;
+}
+
+.group-title {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: .75em;
+  font-weight: $light;
+  line-height: 1.5em;
+  color: $formagic-label-color;
+}
 
 .group .form-input:last-child {
   @include bottom-border($formagic-border-color);
 }
 
 /* Expandable Group --------------------------------------- */
-
 .group-edit {
   @include position(absolute, null .5em null null);
 

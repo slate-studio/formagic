@@ -14,6 +14,9 @@
 #
 # All items should be unique for now.
 #
+# Config options:
+#   ignoreArrayWithEmptyString - do not show element when value is [""]
+#
 # Dependencies:
 #= require formagic/inputs/list_reorder
 #
@@ -60,6 +63,10 @@ class @InputArray extends InputString
 
   _render_items: ->
     @$items.html('')
+
+    if @config.ignoreArrayWithEmptyString
+      if @value.length == 1 && @value[0] == ""
+        return
 
     for v in @value
       @_render_item(v)

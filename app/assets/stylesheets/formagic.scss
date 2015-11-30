@@ -5,12 +5,16 @@ input[type="text"]:disabled {
   background: initial;
 }
 
-$formagic-base-color        : #333 !default;
-$formagic-positive-color    : rgb( 74,135,238) !default;
-$formagic-assertive-color   : rgb(239, 78, 58) !default;
-$formagic-label-color       : lighten($formagic-base-color, 25%);
-$formagic-placeholder-color : rgb(210,210,210) !default;
-$formagic-border-color      : #eee !default;
+$light: 300 !default;
+$white-color: #fff !default;
+
+$formagic-base-color: #2e2e2e !default;
+$formagic-secondary-color: rgba($formagic-base-color, .4) !default;
+$formagic-positive-color: #4a87ee !default;
+$formagic-assertive-color: #e32e2e !default;
+$formagic-label-color: lighten($formagic-base-color, 25%);
+$formagic-placeholder-color: rgb(210,210,210) !default;
+$formagic-border-color: #f1f1f1 !default;
 
 @mixin custom-scrollbar($color, $bg-color, $radius) {
   &::-webkit-scrollbar       { width: 6px; background-color: $bg-color; }

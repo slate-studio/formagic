@@ -19,6 +19,7 @@
 #= require ./formagic/inputs/time
 #= require ./formagic/inputs/url
 #= require ./formagic/inputs/array
+#= require ./formagic/inputs/hash
 
 ## OPTIONAL
 # require ./formagic/inputs/redactor
