@@ -1,4 +1,4 @@
-// Select & Select 2 Inputs -------------------------------
+// Select & Select 2 Inputs ---------------------------------------------------
 
 @import "vendor/select2";
 
@@ -109,7 +109,30 @@
   margin-top : 3px;
 }
 
+// Select Multiple ------------------------------------------------------------
 
+.input-select2.input-stacked.input-sorted_categories {
+  padding-bottom: .5em;
+}
 
+.select2-container--default .select2-selection--multiple {
+  border: none;
+}
 
+.select2-container--default.select2-container--focus .select2-selection--multiple {
+  border: none;
+}
 
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+  background-color: #fff;
+  border: none;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+  top: -1px;
+  position: relative;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__rendered {
+  padding-left: 0;
+}

@@ -16,6 +16,8 @@
 #= require ./formagic/inputs/password
 #= require ./formagic/inputs/select
 #= require ./formagic/inputs/select2
+#= require ./formagic/inputs/select2_single
+#= require ./formagic/inputs/select2_multiple
 #= require ./formagic/inputs/time
 #= require ./formagic/inputs/url
 #= require ./formagic/inputs/array

@@ -21,15 +21,15 @@ class @Form
   constructor: (@object, @config) ->
     @groups    = []
     @inputs    = {}
-    @$el       = $(@config.rootEl || "<form class='form'>")
+    defaultEl  = "<form class='form' onsubmit='return false;'>"
+    @$el       = $(@config.rootEl || defaultEl)
     @schema    = @_get_schema()
     @isRemoved = false
 
     @_build_schema(@schema, @$el)
     @_add_nested_form_remove_button()
 
-
-  # PRIVATE ===============================================
+# PRIVATE =====================================================================
 
   _get_schema: ->
     schema = @config.formSchema
@@ -37,13 +37,11 @@ class @Form
       schema ?= @_generate_default_schema()
     return schema
 
-
   _generate_default_schema: ->
     schema = {}
     for key, value of @object
       schema[key] = @_generate_default_input_config(key, value)
     return schema
-
 
   _generate_default_input_config: (fieldName, value) ->
     config = {}
@@ -64,8 +62,7 @@ class @Form
 
     return config
 
-
-  # INPUTS ================================================
+# INPUTS ======================================================================
 
   _build_schema: (schema, $el) ->
     for fieldName, config of schema
@@ -78,7 +75,6 @@ class @Form
       else
         input = @_generate_input(fieldName, config)
         $el.append input.$el
-
 
   _generate_inputs_group: (klassName, groupConfig) ->
     $group =$ """<div class='group #{ klassName }' />"""
@@ -100,7 +96,6 @@ class @Form
 
     return group
 
-
   _generate_input: (fieldName, inputConfig) ->
     if @object
       value = @object[fieldName]
@@ -115,7 +110,6 @@ class @Form
     @inputs[fieldName] = input
 
     return input
-
 
   _render_input: (name, config, value) ->
     inputConfig = $.extend {}, config
@@ -144,8 +138,7 @@ class @Form
 
     return new inputClass(inputName, value, inputConfig, @object)
 
-
-  # NESTED ================================================
+# NESTED ======================================================================
 
   _add_nested_form_remove_button: ->
     if @config.removeButton
@@ -171,7 +164,6 @@ class @Form
           @isRemoved = true
           @config.onRemove?(this)
 
-
   _forms: ->
     forms = [ @ ]
 
@@ -187,14 +179,12 @@ class @Form
 
     return forms
 
-
-  # PUBLIC ================================================
+# PUBLIC ======================================================================
 
   destroy: ->
     group.destroy?() for group in @groups
     input.destroy?() for name, input of @inputs
     @$el.remove()
-
 
   serialize: (obj={}) ->
     # serialize everything except file inputs
@@ -216,17 +206,12 @@ class @Form
         if input.config.ignoreOnSubmission
           delete obj[input.name]
 
-    # for k, v of obj
-    #   console.log k
-
     return obj
-
 
   hash: (hash={}) ->
     for name, input of @inputs
       input.hash(hash)
     return hash
-
 
   initializePlugins: ->
     for group in @groups
@@ -234,7 +219,6 @@ class @Form
 
     for name, input of @inputs
       input.initialize()
-
 
   showValidationErrors: (errors) ->
     @hideValidationErrors()
@@ -251,17 +235,11 @@ class @Form
         firstMessage = messages[0]
         input.showErrorMessage(firstMessage)
 
-
   hideValidationErrors: ->
     for inputName, input of @inputs
       input.hideErrorMessage()
 
-
-  updateValues: (object) ->
-    for name, value of object
+  updateValues: (@object) ->
+    for name, value of @object
       if @inputs[name]
-        @inputs[name].updateValue(value, object)
-
-
-
-
+        @inputs[name].updateValue(value, @object)

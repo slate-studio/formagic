@@ -23,12 +23,15 @@
 # -----------------------------------------------------------------------------
 
 class @InputArray extends InputString
-  # PRIVATE ===============================================
+# PRIVATE =====================================================================
 
   _add_input: ->
     # hidden input that stores ids, we use __LIST__ prefix to identify
     # ARRAY input type and process it's value while form submission.
-    name = if @config.namePrefix then "#{ @config.namePrefix }[__LIST__#{ @config.klassName }]" else "[__LIST__#{ @config.klassName }]"
+    name = if @config.namePrefix
+      "#{ @config.namePrefix }[__LIST__#{ @config.klassName }]"
+    else
+      "[__LIST__#{ @config.klassName }]"
 
     @$input =$ "<input type='hidden' name='#{ name }' value='' />"
     @$el.append @$input
@@ -44,10 +47,8 @@ class @InputArray extends InputString
     @_render_items()
     @_update_input_value()
 
-
   _values: ->
     @$items.children('li').map((i, el) -> $(el).data('value')).get()
-
 
   _update_input_value: ->
     input_value = @_values().join('|||')
@@ -55,11 +56,9 @@ class @InputArray extends InputString
     @$input.val(input_value)
     @$input.trigger('change')
 
-
   _remove_item: ($el) ->
     $el.parent().remove()
     @_update_input_value()
-
 
   _render_items: ->
     @$items.html('')
@@ -70,7 +69,6 @@ class @InputArray extends InputString
 
     for v in @value
       @_render_item(v)
-
 
   _render_item: (o) ->
     value = _escapeHtml(o)
@@ -86,21 +84,18 @@ class @InputArray extends InputString
 
     @_update_input_value()
 
-
   _create_string_input_el: (placeholder) ->
     @$stringInput =$ "<input type='text' placeholder='#{ placeholder }' />"
     @$el.append @$stringInput
 
-
   _bind_string_input: ->
-    @$stringInput.on 'keyup', (e) =>
+    @$stringInput.on 'keydown', (e) =>
       if e.keyCode == 13
         val = $(e.currentTarget).val()
         @_render_item(val)
         $(e.currentTarget).val('')
 
-
-  # PUBLIC ================================================
+# PUBLIC ======================================================================
 
   initialize: ->
     @config.beforeInitialize?(this)
@@ -117,18 +112,14 @@ class @InputArray extends InputString
 
     @config.onInitialize?(this)
 
-
   updateValue: (@value) ->
     @_render_items()
-
 
   hash: (hash={}) ->
     hash[@config.klassName] = @_values()
     return hash
 
-
 include(InputArray, inputListReorder)
-
 
 chr.formInputs['array'] = InputArray
 
