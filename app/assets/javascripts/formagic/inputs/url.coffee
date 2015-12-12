@@ -1,11 +1,6 @@
 # -----------------------------------------------------------------------------
 # Author: Alexander Kravets <alex@slatestudio.com>,
 #         Slate Studio (http://www.slatestudio.com)
-#
-# Coding Guide:
-#   https://github.com/thoughtbot/guides/tree/master/style/coffeescript
-# -----------------------------------------------------------------------------
-
 # -----------------------------------------------------------------------------
 # INPUT URL
 # - depends on Loft character plugin for assets management
@@ -26,12 +21,10 @@ class @InputUrl extends InputString
         url = objects[0].file.url
         @updateValue(url)
 
-
-  # PUBLIC ================================================
+  # PUBLIC ====================================================================
 
   initialize: ->
     @_add_choose_button()
     @config.onInitialize?(this)
-
 
 chr.formInputs['url'] = InputUrl

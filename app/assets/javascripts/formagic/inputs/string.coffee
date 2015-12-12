@@ -1,11 +1,6 @@
 # -----------------------------------------------------------------------------
 # Author: Alexander Kravets <alex@slatestudio.com>,
 #         Slate Studio (http://www.slatestudio.com)
-#
-# Coding Guide:
-#   https://github.com/thoughtbot/guides/tree/master/style/coffeescript
-# -----------------------------------------------------------------------------
-
 # -----------------------------------------------------------------------------
 # INPUT STRING
 # -----------------------------------------------------------------------------
@@ -21,7 +16,6 @@
 #
 # Dependencies:
 #= require vendor/jquery.typeahead
-#
 # -----------------------------------------------------------------------------
 class @InputString
   constructor: (@name, @value, @config, @object) ->
@@ -35,8 +29,7 @@ class @InputString
 
     return this
 
-
-  # PRIVATE ===============================================
+  # PRIVATE ===================================================================
 
   _safe_value: ->
     if typeof(@value) == 'object'
@@ -44,18 +37,19 @@ class @InputString
     else
       return _escapeHtml(@value)
 
-
   _create_el: ->
     @$el =$ "<label for='#{ @name }' class='#{ @config.klass } input-#{ @config.type } input-#{ @config.klassName }'>"
 
-
   _add_label: ->
-    if @config.label != false
-      @$label        =$ "<span class='label'>#{ @config.label }</span>"
-      @$errorMessage =$ "<span class='error-message'></span>"
-      @$label.append(@$errorMessage)
-      @$el.append(@$label)
+    @$label =$ "<span class='label'>"
+    @$labelTitle =$ "<span class='label-title'>#{ @config.label }</span>"
+    @$errorMessage =$ "<span class='error-message'></span>"
+    @$label.append(@$labelTitle)
+    @$label.append(@$errorMessage)
+    @$el.append(@$label)
 
+    if @config.label == false
+      @$label.hide()
 
   _add_input: ->
     @$input =$ """
@@ -64,7 +58,6 @@ class @InputString
     # trigger change event on keyup so value is cached while typing
     @$input.on 'keyup', (e) => @$input.trigger('change')
     @$el.append @$input
-
 
     if @config.options and $.isArray(@config.options)
       data = new Bloodhound
@@ -85,24 +78,20 @@ class @InputString
         source:     data.ttAdapter()
       })
 
-
   _add_placeholder: ->
     @$input.attr 'placeholder', @config.type
 
     if @config.placeholder
       @$input.attr 'placeholder', @config.placeholder
 
-
   _add_disabled: ->
     if @config.disabled
       @$input.prop('disabled', true)
       @$el.addClass('input-disabled')
 
-
   _add_required: ->
     if @config.required
       @$el.addClass('input-required')
-
 
   _add_limit: ->
     if @config.limit
@@ -111,7 +100,6 @@ class @InputString
       @$input.on 'keyup', =>
         @_update_character_counter()
       @_update_character_counter()
-
 
   _update_character_counter: ->
     characters = @$input.val().length
@@ -123,40 +111,29 @@ class @InputString
     else
       @$charCounter.html("(#{ left })")
 
-
     if characters > @config.limit
       @$charCounter.addClass('exceeds')
     else
       @$charCounter.removeClass('exceeds')
 
-
-  # PUBLIC ================================================
+  # PUBLIC ====================================================================
 
   initialize: ->
     @config.onInitialize?(this)
-
 
   hash: (hash={}) ->
     hash[@config.klassName] = @$input.val()
     return hash
 
-
   updateValue: (@value) ->
     @$input.val(@value)
-
 
   showErrorMessage: (message) ->
     @$el.addClass('error')
     @$errorMessage.html(message)
 
-
   hideErrorMessage: ->
     @$el.removeClass('error')
     @$errorMessage.html('')
 
-
 chr.formInputs['string'] = InputString
-
-
-
-

@@ -1,18 +1,11 @@
 # -----------------------------------------------------------------------------
 # Author: Alexander Kravets <alex@slatestudio.com>,
 #         Slate Studio (http://www.slatestudio.com)
-#
-# Coding Guide:
-#   https://github.com/thoughtbot/guides/tree/master/style/coffeescript
-# -----------------------------------------------------------------------------
-
 # -----------------------------------------------------------------------------
 # INPUT LIST REORDER
 # -----------------------------------------------------------------------------
-
 @inputListReorder =
-
-  # PRIVATE ===============================================
+  # PRIVATE ===================================================================
 
   _bind_reorder: ->
     list = @$items.get(0)
@@ -33,7 +26,3 @@
       @_update_input_value()
       return false
     ), false
-
-
-
-

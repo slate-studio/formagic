@@ -1,11 +1,6 @@
 # -----------------------------------------------------------------------------
 # Author: Alexander Kravets <alex@slatestudio.com>,
 #         Slate Studio (http://www.slatestudio.com)
-#
-# Coding Guide:
-#   https://github.com/thoughtbot/guides/tree/master/style/coffeescript
-# -----------------------------------------------------------------------------
-
 # -----------------------------------------------------------------------------
 # REDACTOR CUSTOM VERSION
 #= require ./redactor_images
@@ -17,8 +12,7 @@ console.log ':: [redactor-character] change $.fx.speeds.fast from 200 to 10 ::'
 $.fx.speeds.fast = 10
 
 @redactorCharacter =
-
-  # PRIVATE ===============================================
+  # PRIVATE ===================================================================
 
   # TODO: fixed toolbar disabled on mobile
   _redactor_options: ->
@@ -40,7 +34,6 @@ $.fx.speeds.fast = 10
       # config.toolbarFixedTopOffset = 40
 
     return config
-
 
   _get_default_config: () ->
     focus:             false
@@ -70,8 +63,3 @@ $.fx.speeds.fast = 10
 
     initCallback: ->
       new RedactorImages(this)
-
-
-
-
-

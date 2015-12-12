@@ -1,4 +1,7 @@
 # -----------------------------------------------------------------------------
+# Author: Alexander Kravets <alex@slatestudio.com>,
+#         Slate Studio (http://www.slatestudio.com)
+# -----------------------------------------------------------------------------
 # INPUT FILE IMAGE
 # -----------------------------------------------------------------------------
 # Config options:
@@ -18,11 +21,9 @@ class @InputFileImage extends InputFile
     @_add_clear_button()
     @_add_remove_checkbox()
 
-
   _update_inputs: ->
     @$link.html(@filename).attr('title', @filename).attr('href', @value.url)
     image_thumb_url = if @config.thumbnail then @config.thumbnail(@object) else @value.url
     @$thumb.attr('src', image_thumb_url).attr('alt', @filename)
-
 
 chr.formInputs['image'] = InputFileImage

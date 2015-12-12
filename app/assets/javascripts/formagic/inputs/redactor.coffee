@@ -1,32 +1,23 @@
 # -----------------------------------------------------------------------------
 # Author: Alexander Kravets <alex@slatestudio.com>,
 #         Slate Studio (http://www.slatestudio.com)
-#
-# Coding Guide:
-#   https://github.com/thoughtbot/guides/tree/master/style/coffeescript
-# -----------------------------------------------------------------------------
-
 # -----------------------------------------------------------------------------
 # INPUT REDACTOR
 # -----------------------------------------------------------------------------
-#
 # Dependencies:
 #= require vendor/redactor.table
 #= require vendor/redactor.fixedtoolbar
 #= require ./redactor_character
 # -----------------------------------------------------------------------------
-
 class @InputRedactor extends InputString
-
-  # PRIVATE ===============================================
+  # PRIVATE ===================================================================
 
   _add_input: ->
     @$el.css('opacity', 0)
     @$input =$ "<textarea class='redactor' name='#{ @name }' rows=1>#{ @_safe_value() }</textarea>"
     @$el.append @$input
 
-
-  # PUBLIC ================================================
+  # PUBLIC ====================================================================
 
   initialize: ->
     @config.beforeInitialize?(this)
@@ -37,17 +28,10 @@ class @InputRedactor extends InputString
 
     @config.onInitialize?(this)
 
-
   updateValue: (@value) ->
     @_trigger_change = false
     @$input.redactor('code.set', @value)
 
-
 include(InputRedactor, redactorCharacter)
 
-
 chr.formInputs['redactor'] = InputRedactor
-
-
-
-

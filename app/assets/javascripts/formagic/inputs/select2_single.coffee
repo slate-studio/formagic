@@ -4,10 +4,8 @@
 # -----------------------------------------------------------------------------
 # SELECT SINGLE
 # -----------------------------------------------------------------------------
-#
 # Dependencies:
 #= require ./select2
-#
 # -----------------------------------------------------------------------------
 # Configuration example:
 #
@@ -17,7 +15,6 @@
 #     titleField: 'title'
 #     url: "/admin/categories.json"
 #     relatedTitleField: 'category_title'
-#
 # -----------------------------------------------------------------------------
 class @InputSelect2Multiple extends InputSelect2
   initialize: ->
@@ -45,7 +42,7 @@ class @InputSelect2Multiple extends InputSelect2
 
     @config.onInitialize?(this)
 
-# PRIVATE =====================================================================
+  # PRIVATE ===================================================================
 
   _initialize_options_hash: ->
     @config.optionsHash = {}

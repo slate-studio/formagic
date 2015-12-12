@@ -1,11 +1,6 @@
 # -----------------------------------------------------------------------------
 # Author: Alexander Kravets <alex@slatestudio.com>,
 #         Slate Studio (http://www.slatestudio.com)
-#
-# Coding Guide:
-#   https://github.com/thoughtbot/guides/tree/master/style/coffeescript
-# -----------------------------------------------------------------------------
-
 # -----------------------------------------------------------------------------
 # INPUT DOCUMENT
 # -----------------------------------------------------------------------------
@@ -18,9 +13,7 @@
 #   updateValue(@value)
 #   showErrorMessage(message)
 #   hideErrorMessage()
-#
 # -----------------------------------------------------------------------------
-
 class @InputDocument
   constructor: (@name, @nestedObject, @config, @object) ->
     @forms = []
@@ -40,19 +33,18 @@ class @InputDocument
 
     return this
 
-
-  # PRIVATE ===============================================
+  # PRIVATE ===================================================================
 
   _create_el: ->
     @$el =$ "<div class='form-input nested-forms input-#{ @config.klassName }'>"
 
-
   _add_label: ->
-    @$label =$ "<span class='label'>#{ @config.label }</span>"
+    @$label =$ "<span class='label'></span>"
+    @$labelTitle =$ "<span class='label-title'>#{ @config.label }</span>"
     @$errorMessage =$ "<span class='error-message'></span>"
-    @$label.append(@$errorMessage)
-    @$el.append(@$label)
-
+    @$label.append @$labelTitle
+    @$label.append @$errorMessage
+    @$el.append @$label
 
   _add_forms: ->
     @nestedForm = @_render_form(@nestedObject, @config.namePrefix, @config)
@@ -61,7 +53,6 @@ class @InputDocument
 
     @$form = @nestedForm.$el
     @$label.after @$form
-
 
   _render_form: (object, namePrefix, config) ->
     formConfig = $.extend {}, config,
@@ -72,8 +63,7 @@ class @InputDocument
     form = new Form(object, formConfig)
     return form
 
-
-  # PUBLIC ================================================
+  # PUBLIC ====================================================================
 
   initialize: ->
     @config.beforeInitialize?(this)
@@ -82,31 +72,22 @@ class @InputDocument
 
     @config.onInitialize?(this)
 
-
   hash: (hash={}) ->
     objects = []
     hash[@config.fieldName] = @nestedForm.hash()
     return hash
 
-
   showErrorMessage: (message) ->
     @$el.addClass 'error'
     @$errorMessage.html(message)
 
-
   hideErrorMessage: ->
     @$el.removeClass 'error'
     @$errorMessage.html('')
-
 
   updateValue: (@nestedObject, @object) ->
     for name, value of @nestedObject
       if @nestedForm.inputs[name]
         @nestedForm.inputs[name].updateValue(value, @object)
 
-
 chr.formInputs['document'] = InputDocument
-
-
-
-

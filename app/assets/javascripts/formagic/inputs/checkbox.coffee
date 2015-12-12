@@ -1,11 +1,6 @@
 # -----------------------------------------------------------------------------
 # Author: Alexander Kravets <alex@slatestudio.com>,
 #         Slate Studio (http://www.slatestudio.com)
-#
-# Coding Guide:
-#   https://github.com/thoughtbot/guides/tree/master/style/coffeescript
-# -----------------------------------------------------------------------------
-
 # -----------------------------------------------------------------------------
 # INPUT CHECKBOX
 # -----------------------------------------------------------------------------
@@ -18,19 +13,16 @@ class @InputCheckbox extends InputString
 
     return this
 
-
-  # PRIVATE ===============================================
+  # PRIVATE ===================================================================
 
   _create_el: ->
     @$el =$ "<label for='#{ @name }' class='form-input input-#{ @config.type } input-#{ @config.klassName }'>"
-
 
   _safe_value: ->
     if not @value or @value == 'false' or @value == 0 or @value == '0'
       return false
     else
       return true
-
 
   _add_input: ->
     # for boolean checkbox to be serialized correctly we need a hidden false
@@ -41,27 +33,23 @@ class @InputCheckbox extends InputString
     @$input =$ "<input type='checkbox' id='#{ @name }' name='#{ @name }' value='true' #{ if @_safe_value() then 'checked' else '' } />"
     @$el.append @$input
 
-
-  # PUBLIC ================================================
+  # PUBLIC ====================================================================
 
   updateValue: (@value) ->
     @$input.prop('checked', @_safe_value())
-
 
   hash: (hash={}) ->
     hash[@config.klassName] = @$input.prop('checked')
     return hash
 
-
 chr.formInputs['checkbox'] = InputCheckbox
-
 
 # -----------------------------------------------------------------------------
 # INPUT CHECKBOX SWITCH
 # -----------------------------------------------------------------------------
 class @InputCheckboxSwitch extends InputCheckbox
 
-  # PRIVATE ===============================================
+  # PRIVATE ===================================================================
 
   _add_input: ->
     @$switch =$ "<div class='switch'>"
@@ -76,9 +64,4 @@ class @InputCheckboxSwitch extends InputCheckbox
     @$checkbox =$ "<div class='checkbox'>"
     @$switch.append @$checkbox
 
-
 chr.formInputs['switch'] = InputCheckboxSwitch
-
-
-
-

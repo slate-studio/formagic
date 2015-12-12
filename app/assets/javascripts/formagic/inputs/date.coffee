@@ -1,11 +1,6 @@
 # -----------------------------------------------------------------------------
 # Author: Alexander Kravets <alex@slatestudio.com>,
 #         Slate Studio (http://www.slatestudio.com)
-#
-# Coding Guide:
-#   https://github.com/thoughtbot/guides/tree/master/style/coffeescript
-# -----------------------------------------------------------------------------
-
 # -----------------------------------------------------------------------------
 # INPUT DATE
 # -----------------------------------------------------------------------------
@@ -17,7 +12,7 @@
 # -----------------------------------------------------------------------------
 class @InputDate extends InputString
 
-  # PRIVATE ===============================================
+  # PRIVATE ===================================================================
 
   _update_date_label: ->
     date = @$input.val()
@@ -29,8 +24,6 @@ class @InputDate extends InputString
       date_formatted = "<span class='placeholder'>Pick a date</span>"
 
     @$dateLabel.html(date_formatted)
-
-
 
   _add_input: ->
     @$input =$ "<input type='text' name='#{ @name }' value='#{ @_safe_value() }' class='input-datetime-date' />"
@@ -45,13 +38,11 @@ class @InputDate extends InputString
 
     @_add_actions()
 
-
   _add_actions: ->
     @$actions =$ "<span class='input-actions'></span>"
     @$label.append @$actions
 
     @_add_remove_button()
-
 
   _add_remove_button: ->
     @$removeBtn =$ "<a href='#' class='remove'>Remove</a>"
@@ -62,8 +53,7 @@ class @InputDate extends InputString
       @updateValue('')
       @_update_date_label()
 
-
-  # PUBLIC ================================================
+  # PUBLIC ====================================================================
 
   initialize: ->
     @config.beforeInitialize?(this)
@@ -81,14 +71,8 @@ class @InputDate extends InputString
 
     @config.onInitialize?(this)
 
-
   updateValue: (@value) ->
     @$input.val(@value)
     @_update_date_label()
 
-
 chr.formInputs['date'] = InputDate
-
-
-
-

@@ -1,17 +1,11 @@
 # -----------------------------------------------------------------------------
 # Author: Alexander Kravets <alex@slatestudio.com>,
 #         Slate Studio (http://www.slatestudio.com)
-#
-# Coding Guide:
-#   https://github.com/thoughtbot/guides/tree/master/style/coffeescript
-# -----------------------------------------------------------------------------
-
 # -----------------------------------------------------------------------------
 # INPUT "NESTED" FORM REORDER
 # -----------------------------------------------------------------------------
-
 @inputFormReorder =
-  # PRIVATE ===============================================
+  # PRIVATE ===================================================================
 
   _bind_forms_reorder: ->
     if @config.sortBy
@@ -52,7 +46,6 @@
 
       @_add_form_reorder_button(form) for form in @forms
 
-
   _add_form_reorder_button: (form) ->
     reorderIcon = """<div class='icon-reorder'
                           data-container-class='#{@reorderContainerClass}'>
@@ -60,12 +53,8 @@
                      </div>"""
     form.$el.prepend(reorderIcon).addClass('reorderable')
 
-
   _find_form_by_target: (el) ->
     if el
       for form in @forms
         if form.$el.get(0) == el then return form
     return null
-
-
-

@@ -1,11 +1,6 @@
 # -----------------------------------------------------------------------------
 # Author: Alexander Kravets <alex@slatestudio.com>,
 #         Slate Studio (http://www.slatestudio.com)
-#
-# Coding Guide:
-#   https://github.com/thoughtbot/guides/tree/master/style/coffeescript
-# -----------------------------------------------------------------------------
-
 # -----------------------------------------------------------------------------
 # INPUT MARKDOWN
 # -----------------------------------------------------------------------------
@@ -23,12 +18,9 @@
 #= require vendor/marked
 #= require vendor/ace
 #= require vendor/mode-markdown
-#
 # -----------------------------------------------------------------------------
-
 class @InputMarkdown extends InputString
-
-  # PRIVATE ===============================================
+  # PRIVATE ===================================================================
 
   _add_input: ->
     if @config.htmlFieldName
@@ -43,7 +35,6 @@ class @InputMarkdown extends InputString
     @$editor =$ "<div></div>"
     @$el.append @$editor
 
-
   _update_inputs: ->
     md_source = @session.getValue()
     @$input.val(md_source)
@@ -54,8 +45,7 @@ class @InputMarkdown extends InputString
       @$inputHtml.val(html)
       @$inputHtml.trigger('change')
 
-
-  # PUBLIC ================================================
+  # PUBLIC ====================================================================
 
   initialize: ->
     @config.beforeInitialize?(this)
@@ -84,11 +74,9 @@ class @InputMarkdown extends InputString
 
     @config.onInitialize?(this)
 
-
   updateValue: (@value) ->
     @session.setValue(@value)
     @_update_inputs()
-
 
   hash: (hash={}) ->
     hash[@config.htmlFieldName] = @$inputHtml.val()
@@ -96,7 +84,3 @@ class @InputMarkdown extends InputString
     return hash
 
 chr.formInputs['markdown'] = InputMarkdown
-
-
-
-

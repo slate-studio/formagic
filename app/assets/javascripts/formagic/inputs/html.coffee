@@ -1,15 +1,9 @@
 # -----------------------------------------------------------------------------
 # Author: Alexander Kravets <alex@slatestudio.com>,
 #         Slate Studio (http://www.slatestudio.com)
-#
-# Coding Guide:
-#   https://github.com/thoughtbot/guides/tree/master/style/coffeescript
-# -----------------------------------------------------------------------------
-
 # -----------------------------------------------------------------------------
 # INPUT HTML
 # -----------------------------------------------------------------------------
-#
 # Config options:
 #   label      - Input label
 #   aceOptions - Custom options for overriding default ones
@@ -20,12 +14,10 @@
 # Dependencies:
 #= require vendor/ace
 #= require vendor/mode-html
-#
 # -----------------------------------------------------------------------------
-
 class @InputHtml extends InputString
 
-  # PRIVATE ===============================================
+  # PRIVATE ===================================================================
 
   _add_input: ->
     @$input =$ "<input type='hidden' name='#{ @name }' value='#{ @_safe_value() }' />"
@@ -34,14 +26,12 @@ class @InputHtml extends InputString
     @$editor =$ "<div></div>"
     @$el.append @$editor
 
-
   _update_inputs: ->
     @value = @editor.getSession().getValue()
     @$input.val(@value)
     @$input.trigger('change')
 
-
-  # PUBLIC ================================================
+  # PUBLIC ====================================================================
 
   initialize: ->
     @config.beforeInitialize?(this)
@@ -69,14 +59,8 @@ class @InputHtml extends InputString
 
     @config.onInitialize?(this)
 
-
   updateValue: (@value) ->
     @editor.getSession().setValue(@value)
     @$input.val(@value)
 
-
 chr.formInputs['html'] = InputHtml
-
-
-
-

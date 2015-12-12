@@ -1,11 +1,6 @@
 # -----------------------------------------------------------------------------
 # Author: Alexander Kravets <alex@slatestudio.com>,
 #         Slate Studio (http://www.slatestudio.com)
-#
-# Coding Guide:
-#   https://github.com/thoughtbot/guides/tree/master/style/coffeescript
-# -----------------------------------------------------------------------------
-
 # -----------------------------------------------------------------------------
 # INPUT FILE
 # -----------------------------------------------------------------------------
@@ -24,12 +19,10 @@ class @InputFile extends InputString
 
     return this
 
-
-  # PRIVATE ===============================================
+  # PRIVATE ===================================================================
 
   _create_el: ->
     @$el =$ "<div class='form-input input-#{ @config.type } input-#{ @config.klassName }'>"
-
 
   _add_input: ->
     @$link =$ "<a href='#' target='_blank' title=''></a>"
@@ -40,7 +33,6 @@ class @InputFile extends InputString
 
     @_add_clear_button()
     @_add_remove_checkbox()
-
 
   _add_clear_button: ->
     @$clearButton =$ "<a href='#' class='input-file-clear'></a>"
@@ -57,7 +49,6 @@ class @InputFile extends InputString
     @$input.on 'change', (e) =>
       @$clearButton.show()
 
-
   _add_remove_checkbox: ->
     removeInputName     = @removeName()
     @$removeLabel       =$ "<label for='#{ removeInputName }'>Remove</label>"
@@ -67,10 +58,8 @@ class @InputFile extends InputString
     @$link.after(@$removeInput)
     @$link.after(@$hiddenRemoveInput)
 
-
   _update_inputs: ->
     @$link.html(@filename).attr('title', @filename).attr('href', @value.url)
-
 
   _update_state: (@filename=null) ->
     @$input.val('')
@@ -88,30 +77,21 @@ class @InputFile extends InputString
       @$el.addClass('empty')
       @$clearButton.hide()
 
-
-  # PUBLIC ================================================
+  # PUBLIC ====================================================================
 
   # when no file uploaded and no file selected, send remove flag so
   # carrierwave does not catch _old_ value
   isEmpty: ->
     ( ! @$input.get()[0].files[0] && ! @filename )
 
-
   removeName: ->
     @name.reverse().replace('[', '[remove_'.reverse()).reverse()
 
-
   updateValue: (@value, @object) ->
     @_update_state()
-
 
   hash: (hash={})->
     # @TODO: file input type does not support caching and versioning as of now
     return hash
 
-
 chr.formInputs['file'] = InputFile
-
-
-
-

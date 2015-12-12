@@ -1,26 +1,19 @@
 # -----------------------------------------------------------------------------
 # Author: Alexander Kravets <alex@slatestudio.com>,
 #         Slate Studio (http://www.slatestudio.com)
-#
-# Coding Guide:
-#   https://github.com/thoughtbot/guides/tree/master/style/coffeescript
-# -----------------------------------------------------------------------------
-
 # -----------------------------------------------------------------------------
 # INPUT COLOR
 # -----------------------------------------------------------------------------
 class @InputColor extends InputString
 
-  # PRIVATE ===============================================
+  # PRIVATE ===================================================================
 
   _add_color_preview: ->
     @$colorPreview =$ "<div class='preview'>"
     @$el.append @$colorPreview
 
-
   _update_color_preview: ->
     @$colorPreview.css { 'background-color': "##{ @$input.val() }" }
-
 
   _validate_input_value: ->
     if (/^(?:[0-9a-f]{3}){1,2}$/i).test(@$input.val())
@@ -28,8 +21,7 @@ class @InputColor extends InputString
     else
       @showErrorMessage('Invalid hex value')
 
-
-  # PUBLIC ================================================
+  # PUBLIC ====================================================================
 
   initialize: ->
     @config.beforeInitialize?(this)
@@ -46,10 +38,4 @@ class @InputColor extends InputString
 
     @config.onInitialize?(this)
 
-
 chr.formInputs['color'] = InputColor
-
-
-
-
-

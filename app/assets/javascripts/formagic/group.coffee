@@ -1,19 +1,12 @@
 # -----------------------------------------------------------------------------
 # Author: Alexander Kravets <alex@slatestudio.com>,
 #         Slate Studio (http://www.slatestudio.com)
-#
-# Coding Guide:
-#   https://github.com/thoughtbot/guides/tree/master/style/coffeescript
-# -----------------------------------------------------------------------------
-
 # -----------------------------------------------------------------------------
 # EXPANDABLE GROUP
 # -----------------------------------------------------------------------------
-#
+# TODO: refactor this to be used with group-panel
 # Usage: onInitialize: (form, group) -> new ExpandableGroup(form, group, 'Details')
-#
 # -----------------------------------------------------------------------------
-
 @_expandableGroupStateCache = {}
 
 class @ExpandableGroup
@@ -28,7 +21,6 @@ class @ExpandableGroup
       @_cacheExpanderState()
       e.preventDefault()
 
-
   _restoreExpanderFromCache: ->
     if _expandableGroupStateCache.__hash
 
@@ -39,11 +31,9 @@ class @ExpandableGroup
       if _expandableGroupStateCache.__hash.endsWith 'new'
         @$expander.removeClass 'hidden'
 
-
   _cacheExpanderState: ->
     _expandableGroupStateCache.__hash = window.location.hash
     _expandableGroupStateCache[@_groupId()] = @group.$el.is(':visible')
-
 
   _groupId: ->
     groupIndex = $('form').find(".group.#{ @group.klassName }").index(@group.$el)

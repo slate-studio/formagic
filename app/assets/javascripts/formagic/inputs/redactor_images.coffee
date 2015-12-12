@@ -1,15 +1,9 @@
 # -----------------------------------------------------------------------------
 # Author: Alexander Kravets <alex@slatestudio.com>,
 #         Slate Studio (http://www.slatestudio.com)
-#
-# Coding Guide:
-#   https://github.com/thoughtbot/guides/tree/master/style/coffeescript
-# -----------------------------------------------------------------------------
-
 # -----------------------------------------------------------------------------
 # REDACTOR IMAGES
 # -----------------------------------------------------------------------------
-
 class @RedactorImages
   constructor: (@redactor) ->
 
@@ -40,7 +34,6 @@ class @RedactorImages
 
          <label class="redactor-image-link-option"><input type="checkbox" id="redactor-image-link-blank"> Open link in new tab</label>
        </section>"""
-
 
   update: ($image) ->
     @redactor.image.hideResize()
@@ -85,7 +78,6 @@ class @RedactorImages
     @redactor.observe.images()
     @redactor.code.sync()
 
-
   _show_edit: ($image) ->
     $link = $image.closest('a')
 
@@ -126,7 +118,6 @@ class @RedactorImages
 
     @redactor.modal.show()
 
-
   # for some reason when image is a link, tooltip is shown with the image edit dialog,
   # add e.stopPropagation() to skip tooltip callback
   _load_editable_controls: ($image) ->
@@ -160,7 +151,3 @@ class @RedactorImages
       @redactor.image.editter.css('margin-left', '-' + editerWidth/2 + 'px')
 
     return @redactor.image.loadResizableControls($image, imageBox)
-
-
-
-

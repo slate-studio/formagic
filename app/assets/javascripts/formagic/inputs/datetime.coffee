@@ -1,23 +1,16 @@
 # -----------------------------------------------------------------------------
 # Author: Alexander Kravets <alex@slatestudio.com>,
 #         Slate Studio (http://www.slatestudio.com)
-#
-# Coding Guide:
-#   https://github.com/thoughtbot/guides/tree/master/style/coffeescript
-# -----------------------------------------------------------------------------
-
 # -----------------------------------------------------------------------------
 # INPUT DATE
 # -----------------------------------------------------------------------------
-#
 # Dependencies:
 #= require vendor/datedropper
 #= require vendor/moment
-#
 # -----------------------------------------------------------------------------
 class @InputDatetime extends InputDate
 
-  # PRIVATE ===============================================
+  # PRIVATE ===================================================================
 
   _update_value: ->
     mt = moment(@$inputTime.val(), 'LT')
@@ -36,22 +29,18 @@ class @InputDatetime extends InputDate
 
     @$input.val(value)
 
-
   _update_date_input: ->
     m = moment(@$input.val()).utcOffset(@tzOffset)
     @$inputDate.val ( if m.isValid() then m.format('YYYY-MM-DD') else '' )
-
 
   _update_time_input: ->
     m = moment(@$input.val()).utcOffset(@tzOffset)
     @$inputTime.val ( if m.isValid() then m.format('h:mm a') else '' )
 
-
   _update_date_label: ->
     m = moment(@$inputDate.val()).utcOffset(@tzOffset)
     label = if m.isValid() then m.format('dddd, MMM D, YYYY') else "<span class='placeholder'>Pick a date</span>"
     @$dateLabel.html label
-
 
   _normalized_value: ->
     # -- use local timezone to represent time
@@ -60,7 +49,6 @@ class @InputDatetime extends InputDate
 
     m = moment(@value).utcOffset(@tzOffset)
     @value = if m.isValid() then m.format() else ''
-
 
   _add_input: ->
     @_normalized_value()
@@ -97,13 +85,11 @@ class @InputDatetime extends InputDate
 
     @_add_actions()
 
-
   _add_actions: ->
     @$actions =$ "<span class='input-actions'></span>"
     @$label.append @$actions
 
     @_add_remove_button()
-
 
   _add_remove_button: ->
     @$removeBtn =$ "<a href='#' class='remove'>Remove</a>"
@@ -116,8 +102,7 @@ class @InputDatetime extends InputDate
       @_update_date_label()
       @_update_value()
 
-
-  # PUBLIC ================================================
+  # PUBLIC ====================================================================
 
   initialize: ->
     @config.beforeInitialize?(this)
@@ -141,7 +126,6 @@ class @InputDatetime extends InputDate
 
     @config.onInitialize?(this)
 
-
   updateValue: (@value) ->
     @_normalized_value()
     @$input.val(@value)
@@ -150,9 +134,4 @@ class @InputDatetime extends InputDate
     @_update_date_label()
     @_update_time_input()
 
-
 chr.formInputs['datetime'] = InputDatetime
-
-
-
-

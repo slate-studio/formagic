@@ -1,11 +1,6 @@
 # -----------------------------------------------------------------------------
 # Author: Alexander Kravets <alex@slatestudio.com>,
 #         Slate Studio (http://www.slatestudio.com)
-#
-# Coding Guide:
-#   https://github.com/thoughtbot/guides/tree/master/style/coffeescript
-# -----------------------------------------------------------------------------
-
 # -----------------------------------------------------------------------------
 # INPUT ARRAY
 # -----------------------------------------------------------------------------
@@ -21,9 +16,9 @@
 #= require formagic/inputs/list_reorder
 #
 # -----------------------------------------------------------------------------
-
 class @InputArray extends InputString
-# PRIVATE =====================================================================
+
+  # PRIVATE ===================================================================
 
   _add_input: ->
     # hidden input that stores ids, we use __LIST__ prefix to identify
@@ -95,7 +90,7 @@ class @InputArray extends InputString
         @_render_item(val)
         $(e.currentTarget).val('')
 
-# PUBLIC ======================================================================
+  # PUBLIC ====================================================================
 
   initialize: ->
     @config.beforeInitialize?(this)
@@ -122,7 +117,3 @@ class @InputArray extends InputString
 include(InputArray, inputListReorder)
 
 chr.formInputs['array'] = InputArray
-
-
-
-

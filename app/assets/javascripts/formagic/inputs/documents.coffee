@@ -1,11 +1,6 @@
 # -----------------------------------------------------------------------------
 # Author: Alexander Kravets <alex@slatestudio.com>,
 #         Slate Studio (http://www.slatestudio.com)
-#
-# Coding Guide:
-#   https://github.com/thoughtbot/guides/tree/master/style/coffeescript
-# -----------------------------------------------------------------------------
-
 # -----------------------------------------------------------------------------
 # INPUT "NESTED" FORM
 # -----------------------------------------------------------------------------
@@ -21,9 +16,7 @@
 #
 # Dependencies:
 #= require ./documents_reorder
-#
 # -----------------------------------------------------------------------------
-
 class @InputForm
   constructor: (@name, @nestedObjects, @config, @object) ->
     @forms = []
@@ -46,25 +39,23 @@ class @InputForm
 
     return this
 
-
-  # PRIVATE ===============================================
+  # PRIVATE ===================================================================
 
   _create_el: ->
     @$el =$ "<div class='form-input nested-forms input-#{ @config.klassName }'>"
 
-
   _add_label: ->
-    @$label =$ "<span class='label'>#{ @config.label }</span>"
+    @$label =$ "<span class='label'></span>"
+    @$labelTitle =$ "<span class='label-title'>#{ @config.label }</span>"
     @$errorMessage =$ "<span class='error-message'></span>"
-    @$label.append(@$errorMessage)
-    @$el.append(@$label)
-
+    @$label.append @$labelTitle
+    @$label.append @$errorMessage
+    @$el.append @$label
 
   _extend_schema_with: (name, config) ->
     schemaConfig = {}
     schemaConfig[name] = config
     @config.formSchema = $.extend(schemaConfig, @config.formSchema)
-
 
   _add_forms: ->
     # add id to schema
@@ -88,7 +79,6 @@ class @InputForm
 
       @_bind_forms_reorder()
 
-
   _sort_nested_objects: ->
     if @config.sortBy
       if @nestedObjects
@@ -97,7 +87,6 @@ class @InputForm
         @nestedObjects.sort (a, b) => parseFloat(a[@config.sortBy]) - parseFloat(b[@config.sortBy])
         # normalizes nested objects positions
         (o[@config.sortBy] = parseInt(i) + 1) for i, o of @nestedObjects
-
 
   _render_form: (object, namePrefix, config) ->
     formConfig = $.extend {}, config,
@@ -109,7 +98,6 @@ class @InputForm
 
     return form
 
-
   _add_new_button: ->
     if ! @config.disableNewDocuments
       label = @config.newButtonLabel || "Add"
@@ -119,8 +107,7 @@ class @InputForm
 
       @$newButton.on 'click', (e) => e.preventDefault() ; @addNewForm()
 
-
-  # PUBLIC ================================================
+  # PUBLIC ====================================================================
 
   initialize: ->
     @config.beforeInitialize?(this)
@@ -130,23 +117,19 @@ class @InputForm
 
     @config.onInitialize?(this)
 
-
   hash: (hash={}) ->
     objects = []
     objects.push(form.hash()) for form in @forms
     hash[@config.fieldName] = objects
     return hash
 
-
   showErrorMessage: (message) ->
     @$el.addClass 'error'
     @$errorMessage.html(message)
 
-
   hideErrorMessage: ->
     @$el.removeClass 'error'
     @$errorMessage.html('')
-
 
   addNewForm: (object=null) ->
     namePrefix    = "#{ @config.namePrefix }[#{ Date.now() }]"
@@ -173,7 +156,6 @@ class @InputForm
 
     return form
 
-
   updateValue: (@nestedObjects, @object) ->
     # New document should update id, also after uploading images form for existing
     # document might change, so we reset all nested forms to reflect these updates.
@@ -187,13 +169,7 @@ class @InputForm
     for nestedForm in @forms
       nestedForm.initializePlugins()
 
-
 include(InputForm, inputFormReorder)
-
 
 chr.formInputs['form']      = InputForm
 chr.formInputs['documents'] = InputForm
-
-
-
-

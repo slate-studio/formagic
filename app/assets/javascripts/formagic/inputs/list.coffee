@@ -1,11 +1,6 @@
 # -----------------------------------------------------------------------------
 # Author: Alexander Kravets <alex@slatestudio.com>,
 #         Slate Studio (http://www.slatestudio.com)
-#
-# Coding Guide:
-#   https://github.com/thoughtbot/guides/tree/master/style/coffeescript
-# -----------------------------------------------------------------------------
-
 # -----------------------------------------------------------------------------
 # INPUT LIST
 # -----------------------------------------------------------------------------
@@ -17,12 +12,10 @@
 # Dependencies:
 #= require ./list_reorder
 #= require ./list_typeahead
-#
 # -----------------------------------------------------------------------------
-
 class @InputList extends InputString
 
-  # PRIVATE ===============================================
+  # PRIVATE ===================================================================
 
   _add_input: ->
     # @TODO: check if we can use @config.name instead of @config.target
@@ -47,7 +40,6 @@ class @InputList extends InputString
     @_render_items()
     @_update_input_value()
 
-
   _update_input_value: ->
     ids = []
     @$items.children('li').each (i, el) -> ids.push $(el).attr('data-id')
@@ -57,7 +49,6 @@ class @InputList extends InputString
     @$input.val(value)
     @$input.trigger('change')
 
-
   _remove_item: ($el) ->
     id = $el.attr('data-id')
     delete @objects[id]
@@ -65,12 +56,10 @@ class @InputList extends InputString
     $el.parent().remove()
     @_update_input_value()
 
-
   _ordered_ids: ->
     ids = @$input.val().split(',')
     if ids[0] == '' then ids = []
     return ids
-
 
   _render_items: ->
     @$items.html('')
@@ -78,7 +67,6 @@ class @InputList extends InputString
 
     for o in @value
       @_render_item(o)
-
 
   _render_item: (o) ->
     @_add_object(o)
@@ -99,18 +87,15 @@ class @InputList extends InputString
     @$items.append(listItem)
     @_update_input_value()
 
-
   _add_object: (o) ->
     @_normalize_object(o)
     @objects[o._id] = o
-
 
   _normalize_object: (o) ->
     o._id ?= o.id
     if ! o._id then console.log("::: list item is missing an 'id' or '_id' :::")
 
-
-  # PUBLIC ================================================
+  # PUBLIC ====================================================================
 
   initialize: ->
     @config.beforeInitialize?(this)
@@ -127,10 +112,8 @@ class @InputList extends InputString
 
     @config.onInitialize?(this)
 
-
   updateValue: (@value) ->
     @_render_items()
-
 
   hash: (hash={}) ->
     hash[@config.target] = @$input.val()
@@ -142,9 +125,7 @@ class @InputList extends InputString
     hash[@config.klassName] = ordered_objects
     return hash
 
-
 include(InputList, inputListReorder)
 include(InputList, inputListTypeahead)
-
 
 chr.formInputs['list'] = InputList

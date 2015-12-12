@@ -1,22 +1,14 @@
 # -----------------------------------------------------------------------------
 # Author: Alexander Kravets <alex@slatestudio.com>,
 #         Slate Studio (http://www.slatestudio.com)
-#
-# Coding Guide:
-#   https://github.com/thoughtbot/guides/tree/master/style/coffeescript
-# -----------------------------------------------------------------------------
-
 # -----------------------------------------------------------------------------
 # FORM
 # -----------------------------------------------------------------------------
-#
 # Generates form based on provided configuration schema. If schema is not
 # provided generates default form based on object keys. This uses Rails
 # conventions for managing names for attributes, arrays, hashs and nested
 # objects.
-#
 # -----------------------------------------------------------------------------
-
 class @Form
   constructor: (@object, @config) ->
     @groups    = []
@@ -29,7 +21,7 @@ class @Form
     @_build_schema(@schema, @$el)
     @_add_nested_form_remove_button()
 
-# PRIVATE =====================================================================
+  # PRIVATE ===================================================================
 
   _get_schema: ->
     schema = @config.formSchema
@@ -62,7 +54,7 @@ class @Form
 
     return config
 
-# INPUTS ======================================================================
+  # INPUTS ====================================================================
 
   _build_schema: (schema, $el) ->
     for fieldName, config of schema
@@ -138,7 +130,7 @@ class @Form
 
     return new inputClass(inputName, value, inputConfig, @object)
 
-# NESTED ======================================================================
+  # NESTED ====================================================================
 
   _add_nested_form_remove_button: ->
     if @config.removeButton
@@ -179,7 +171,7 @@ class @Form
 
     return forms
 
-# PUBLIC ======================================================================
+  # PUBLIC ====================================================================
 
   destroy: ->
     group.destroy?() for group in @groups
