@@ -52,6 +52,9 @@ class @InputForm
     @$label.append @$errorMessage
     @$el.append @$label
 
+    if @config.label == false
+      @$labelTitle.hide()
+
   _extend_schema_with: (name, config) ->
     schemaConfig = {}
     schemaConfig[name] = config
@@ -102,10 +105,10 @@ class @InputForm
     if ! @config.disableNewDocuments
       label = @config.newButtonLabel || "Add"
 
-      @$newButton =$ """<a href='#' class='nested-form-new'>#{ label }</a>"""
+      @$newButton =$ """<button class='nested-form-new'>#{ label }</button>"""
       @$el.append @$newButton
 
-      @$newButton.on 'click', (e) => e.preventDefault() ; @addNewForm()
+      @$newButton.on 'click', (e) => @addNewForm()
 
   # PUBLIC ====================================================================
 

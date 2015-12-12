@@ -1,4 +1,20 @@
 // Form (generic components) ------------------------------ */
+.form {
+  button {
+    line-height: 1.4em;
+    border-radius: 4px;
+    padding: .25em .75em;
+    border: 1px solid $formagic-positive-color;
+    color: $formagic-positive-color;
+    background-color: $white-color;
+
+    &:hover {
+      background-color: $formagic-positive-color;
+      border-color: $formagic-positive-color;
+      color: $white-color;
+    }
+  }
+}
 
 // General
 .form-input {
@@ -61,30 +77,3 @@
   margin     : 1em 1em 0;
   padding    : 1em;
 }
-
-// Input Actions used to the right from label
-.input-actions {
-  font-size: .8em;
-  float: right;
-
-  button, a {
-    line-height: 1.4em;
-    border-radius: 4px;
-    padding: .25em .75em;
-    margin: 0 0 0 .75em;
-    border: 1px solid $formagic-positive-color;
-    color: $formagic-positive-color;
-    background-color: $white-color;
-
-    &:hover {
-      background-color: $formagic-positive-color;
-      border-color: $formagic-positive-color;
-      color: $white-color;
-    }
-  }
-
-}
-
-
-
-

@@ -49,7 +49,7 @@ class @InputString
     @$el.append(@$label)
 
     if @config.label == false
-      @$label.hide()
+      @$labelTitle.hide()
 
   _add_input: ->
     @$input =$ """

@@ -46,6 +46,9 @@ class @InputDocument
     @$label.append @$errorMessage
     @$el.append @$label
 
+    if @config.label == false
+      @$labelTitle.hide()
+
   _add_forms: ->
     @nestedForm = @_render_form(@nestedObject, @config.namePrefix, @config)
 

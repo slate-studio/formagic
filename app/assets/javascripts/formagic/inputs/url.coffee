@@ -9,14 +9,12 @@ class @InputUrl extends InputString
 
   _add_choose_button: ->
     @$actions =$ "<span class='input-actions'></span>"
-    @$label.append @$actions
+    @$el.append @$actions
 
-    @$chooseBtn =$ "<a href='#' class='choose'>Choose or upload a file</a>"
+    @$chooseBtn =$ "<button>Pick a file</button>"
     @$actions.append @$chooseBtn
 
     @$chooseBtn.on 'click', (e) =>
-      e.preventDefault()
-
       chr.modules.loft.showModal 'all', false, (objects) =>
         url = objects[0].file.url
         @updateValue(url)
