@@ -89,14 +89,14 @@ class @InputDatetime extends InputDate
     @$actions =$ "<span class='input-actions'></span>"
     @$label.append @$actions
 
-    @_add_remove_button()
+    if not @config.disableClear
+      @_add_clear_button()
 
-  _add_remove_button: ->
-    @$removeBtn =$ "<a href='#' class='remove'>Remove</a>"
+  _add_clear_button: ->
+    @$removeBtn =$ "<button class='clear'>Clear</button>"
     @$actions.append @$removeBtn
 
     @$removeBtn.on 'click', (e) =>
-      e.preventDefault()
       @$inputTime.val('')
       @$inputDate.val('')
       @_update_date_label()
