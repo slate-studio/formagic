@@ -5,6 +5,7 @@
 #= require ./formagic/inputs/string
 #= require ./formagic/inputs/text
 #= require ./formagic/inputs/checkbox
+#= require ./formagic/inputs/switch
 #= require ./formagic/inputs/color
 #= require ./formagic/inputs/date
 #= require ./formagic/inputs/datetime
