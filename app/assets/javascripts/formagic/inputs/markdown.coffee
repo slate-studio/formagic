@@ -7,9 +7,10 @@
 # Markdown input supports syntax highlighting and optional compilation to html.
 #
 # Config options:
-#   label         - Input label
-#   aceOptions    - Custom options for overriding default ones
-#   htmlFieldName - Input name for generated HTML content
+#   label          - Input label
+#   aceOptions     - Custom options for overriding default ones
+#   htmlFieldName  - Input name for generated HTML content
+#   disableToolbar - Do not show shorcuts panel
 #
 # Input config example:
 #   body_md: { type: 'markdown', label: 'Article', htmlFieldName: 'body_html' }
@@ -18,6 +19,7 @@
 #= require vendor/marked
 #= require vendor/ace
 #= require vendor/mode-markdown
+#= require ./markdown_toolbar
 # -----------------------------------------------------------------------------
 class @InputMarkdown extends InputString
   # PRIVATE ===================================================================
@@ -35,6 +37,9 @@ class @InputMarkdown extends InputString
     @$editor =$ "<div></div>"
     @$el.append @$editor
 
+    if ! @config.disableToolbar
+      @_add_toolbar()
+
   _update_inputs: ->
     md_source = @session.getValue()
     @$input.val(md_source)
@@ -48,6 +53,7 @@ class @InputMarkdown extends InputString
   # PUBLIC ====================================================================
 
   initialize: ->
+    @config.pluginConfig ||= {}
     @config.beforeInitialize?(this)
 
     @editor = ace.edit(@$editor.get(0))
@@ -59,7 +65,7 @@ class @InputMarkdown extends InputString
     @session.setMode("ace/mode/markdown")
 
     # options: https://github.com/ajaxorg/ace/wiki/Configuring-Ace
-    @editor.setOptions
+    aceOptions =
       autoScrollEditorIntoView: true
       minLines:                 5
       maxLines:                 Infinity
@@ -67,11 +73,11 @@ class @InputMarkdown extends InputString
       showGutter:               false
       highlightActiveLine:      false
       showPrintMargin:          false
+    $.merge(aceOptions, @config.pluginConfig)
 
+    @editor.setOptions aceOptions
     @session.on 'change', (e) => @_update_inputs()
-
     @_update_inputs()
-
     @config.onInitialize?(this)
 
   updateValue: (@value) ->
@@ -82,5 +88,7 @@ class @InputMarkdown extends InputString
     hash[@config.htmlFieldName] = @$inputHtml.val()
     hash[@config.klassName]     = @$input.val()
     return hash
+
+include(InputMarkdown, inputMarkdownToolbar)
 
 chr.formInputs['markdown'] = InputMarkdown

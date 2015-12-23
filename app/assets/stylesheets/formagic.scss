@@ -15,6 +15,7 @@ $formagic-assertive-color: #e32e2e !default;
 $formagic-label-color: lighten($formagic-base-color, 25%);
 $formagic-placeholder-color: rgb(210,210,210) !default;
 $formagic-border-color: #f1f1f1 !default;
+$formagic-bg-color: #fbfbfd !default;
 
 @mixin custom-scrollbar($color, $bg-color, $radius) {
   &::-webkit-scrollbar       { width: 6px; background-color: $bg-color; }
@@ -73,3 +74,4 @@ $formagic-border-color: #f1f1f1 !default;
 @import "formagic/array";
 @import "formagic/actions";
 @import "formagic/url";
+@import "formagic/markdown";
