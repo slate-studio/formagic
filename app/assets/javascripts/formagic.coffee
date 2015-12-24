@@ -26,8 +26,11 @@
 
 ## OPTIONAL
 # require ./formagic/inputs/redactor
-# require ./formagic/inputs/html
-# require ./formagic/inputs/markdown
+# require ./formagic/inputs/ace-html
+# require ./formagic/inputs/ace-css
+# require ./formagic/inputs/ace-js
+# require ./formagic/inputs/ace-coffee
+# require ./formagic/inputs/ace-markdown
 
 @Icons ?= {}
 @Icons.reorderDocuments = "<i class='fa fa-ellipsis-v'></i>"

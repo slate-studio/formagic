@@ -2,20 +2,12 @@
 # Author: Alexander Kravets <alex@slatestudio.com>,
 #         Slate Studio (http://www.slatestudio.com)
 # -----------------------------------------------------------------------------
-# INPUT HTML
+# ABSTRACT ACE EDITOR
 # -----------------------------------------------------------------------------
-# Config options:
-#   label      - Input label
-#   aceOptions - Custom options for overriding default ones
-#
-# Input config example:
-#   body_html: { type: 'html', label: 'Article' }
-#
 # Dependencies:
 #= require vendor/ace
-#= require vendor/mode-html
 # -----------------------------------------------------------------------------
-class @InputHtml extends InputString
+class @InputAce extends InputString
 
   # PRIVATE ===================================================================
 
@@ -23,17 +15,32 @@ class @InputHtml extends InputString
     @$input =$ "<input type='hidden' name='#{ @name }' value='#{ @_safe_value() }' />"
     @$el.append @$input
 
-    @$editor =$ "<div></div>"
+    @$editor =$ "<div>"
     @$el.append @$editor
 
   _update_inputs: ->
-    @value = @editor.getSession().getValue()
+    @value = @session.getValue()
     @$input.val(@value)
-    @$input.trigger('change')
+    @$input.trigger("change")
+
+  _set_mode: ->
+
+  # ace options: https://github.com/ajaxorg/ace/wiki/Configuring-Ace
+  _default_options: ->
+    autoScrollEditorIntoView: true
+    minLines:                 8
+    maxLines:                 Infinity
+    showLineNumbers:          false
+    showGutter:               false
+    highlightActiveLine:      false
+    showPrintMargin:          false
+    tabSize:                  2
 
   # PUBLIC ====================================================================
 
   initialize: ->
+    @_before_initialize?()
+    @config.pluginConfig ||= {}
     @config.beforeInitialize?(this)
 
     @editor = ace.edit(@$editor.get(0))
@@ -43,24 +50,15 @@ class @InputHtml extends InputString
     @session.setUseWorker(false)
     @session.setValue(@$input.val())
     @session.setUseWrapMode(true)
-    @session.setMode("ace/mode/html")
+    @_set_mode()
 
-    # ace options: https://github.com/ajaxorg/ace/wiki/Configuring-Ace
-    @editor.setOptions
-      autoScrollEditorIntoView: true
-      minLines:                 5
-      maxLines:                 Infinity
-      showLineNumbers:          false
-      showGutter:               false
-      highlightActiveLine:      false
-      showPrintMargin:          false
+    aceOptions = @_default_options()
+    $.merge(aceOptions, @config.pluginConfig)
+    @editor.setOptions(aceOptions)
 
-    @session.on 'change', (e) => @_update_inputs()
-
+    @session.on "change", (e) => @_update_inputs()
+    @_after_initialize?()
     @config.onInitialize?(this)
 
   updateValue: (@value) ->
-    @editor.getSession().setValue(@value)
-    @$input.val(@value)
-
-chr.formInputs['html'] = InputHtml
+    @session.setValue(@value)
