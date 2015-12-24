@@ -15,7 +15,7 @@ class @InputUrl extends InputString
     @$actions.append @$chooseBtn
 
     @$chooseBtn.on 'click', (e) =>
-      chr.modules.loft.showModal 'all', false, (objects) =>
+      chr.modules.loft.showAll false, (objects) =>
         url = objects[0].file.url
         @updateValue(url)
 

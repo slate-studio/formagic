@@ -25,6 +25,8 @@ class @InputMarkdown extends InputString
   # PRIVATE ===================================================================
 
   _add_input: ->
+    @config.imageSize ||= "large"
+
     if @config.htmlFieldName
       @$inputHtml =$ "<input type='hidden' name='[#{ @config.htmlFieldName }]' />"
       if @object

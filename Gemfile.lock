@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    formagic (0.3.9)
+    formagic (0.3.10)
       bourbon (>= 3.2)
       normalize-rails (>= 3.0)
 

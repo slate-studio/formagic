@@ -15,6 +15,9 @@ class @InputMarkdownToolbar
 
   # PRIVATE ===================================================================
 
+  _is_visible: ->
+    @$el.is(":visible")
+
   _bind_window_scroll: ->
     @$window =$ ".content:visible"
     @$window.on "scroll", => @_check_offset()
@@ -32,9 +35,8 @@ class @InputMarkdownToolbar
     if isBelowAceTop && isAboveAceBottom then @_fix() else @_unfix()
 
   _fix: ->
-    if @isFixed
-      return
-      # some legacy workaround for mobile:
+    if @isFixed || ! @_is_visible() then return
+      # TODO: make this work on mobile ...
       # webkit does not recalc top: 0 when focused on contenteditable
       # if chr.isMobile() && @isFocused
       #   @$el.css
@@ -51,7 +53,7 @@ class @InputMarkdownToolbar
     @isFixed = true
 
   _unfix: ->
-    if ! @isFixed then return
+    if ! @isFixed || ! @_is_visible() then return
 
     @$ace = @input.$editor
     @$el.css
@@ -72,6 +74,7 @@ class @InputMarkdownToolbar
     @buttons[title] = $btn
 
 @inputMarkdownToolbar =
+
   # PRIVATE ===================================================================
 
   _add_toolbar: ->
@@ -80,6 +83,7 @@ class @InputMarkdownToolbar
 
     @toolbar.addButton "Link", $.proxy(@_insert_link, this)
     @toolbar.addButton "Image", $.proxy(@_insert_images, this)
+    @toolbar.addButton "File", $.proxy(@_insert_files, this)
 
   _insert_link: (editor) ->
     url = prompt("URL", "")
@@ -90,7 +94,19 @@ class @InputMarkdownToolbar
     editor.focus()
 
   _insert_images: (editor) ->
-    chr.modules.loft.showModal "images", true, (objects) ->
+    # TODO: add workaround when loft is not available
+    chr.modules.loft.showImages true, (objects) =>
       for image in objects
-        editor.insert "![#{image.name}](#{image.file.url})\n"
+        name = image.name
+        url = image.file[@config.imageSize].url
+        editor.insert "![#{name}](#{url})\n"
+    editor.focus()
+
+  _insert_files: (editor) ->
+    # TODO: add workaround when loft is not available
+    chr.modules.loft.showDocuments true, (objects) =>
+      for file in objects
+        name = file.name
+        url = file.file.url
+        editor.insert "[#{name}](#{url})\n"
     editor.focus()
