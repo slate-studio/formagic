@@ -95,18 +95,22 @@ class @InputMarkdownToolbar
 
   _insert_images: (editor) ->
     # TODO: add workaround when loft is not available
-    chr.modules.loft.showImages true, (objects) =>
+    onAccept = (objects) =>
       for image in objects
         name = image.name
         url = image.file[@config.imageSize].url
         editor.insert "![#{name}](#{url})\n"
-    editor.focus()
+      editor.focus()
+    onCancel = -> editor.focus()
+    chr.modules.loft.showImages true, onAccept, onCancel
 
   _insert_files: (editor) ->
     # TODO: add workaround when loft is not available
-    chr.modules.loft.showDocuments true, (objects) =>
+    onAccept = (objects) =>
       for file in objects
         name = file.name
         url = file.file.url
         editor.insert "[#{name}](#{url})\n"
-    editor.focus()
+      editor.focus()
+    onCancel = -> editor.focus()
+    chr.modules.loft.showDocuments true, onAccept, onCancel

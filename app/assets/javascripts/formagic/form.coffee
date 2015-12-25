@@ -83,7 +83,10 @@ class @Form
     if groupConfig.inputs
       @_build_schema(groupConfig.inputs, $group)
 
-    group = { $el: $group, klassName: klassName, onInitialize: groupConfig.onInitialize }
+    group =
+      $el: $group
+      klassName: klassName
+      onInitialize: groupConfig.onInitialize
     @groups.push group
 
     return group

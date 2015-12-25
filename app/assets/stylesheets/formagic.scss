@@ -55,6 +55,14 @@ $formagic-bg-color: #fbfbfd !default;
   text-align: center;
   z-index: 10;
   cursor: pointer;
+
+  // This is used so we always have parent reorder item clicked event when
+  // user clicks on a child tag
+  &:after {
+    @include position(absolute, 0 0 0 0);
+    content: "";
+    display: block;
+  }
 }
 
 @import "formagic/form";
@@ -65,7 +73,7 @@ $formagic-bg-color: #fbfbfd !default;
 @import "formagic/group";
 @import "formagic/image";
 @import "formagic/list";
-@import "formagic/nested-form";
+@import "formagic/documents";
 @import "formagic/redactor-character";
 @import "formagic/select";
 @import "formagic/string";
