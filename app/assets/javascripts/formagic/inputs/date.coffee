@@ -62,6 +62,7 @@ class @InputDate extends InputString
     config =
       animation: 'fadein'
       format:    'Y-m-d'
+      maxYear:   new Date().getFullYear() + 5
 
     $.extend(config, @config.pluginConfig)
 
